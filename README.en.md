@@ -207,7 +207,6 @@ A daemon that watches wherever your conversation logs land (like `~/.claude/proj
 cd trailmem
 pip install -r daemon/requirements.txt  # 依存導入
 # 起動はリポジトリルートから(daemon/内からは失敗します)
-pip install -r requirements.txt
 
 python -m daemon.cli start      # asks for opt-in confirmation the first time
 python -m daemon.cli start -y   # skip the confirmation

@@ -216,7 +216,6 @@ TrailMemの使い方は2通りあります。どちらも中身は同じSQLite D
 cd trailmem
 pip install -r daemon/requirements.txt  # 依存導入
 # 起動はリポジトリルートから(daemon/内からは失敗します)
-pip install -r requirements.txt
 
 python -m daemon.cli start      # 初回はオプトイン確認あり
 python -m daemon.cli start -y   # 確認をスキップ
