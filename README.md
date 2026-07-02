@@ -9,7 +9,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
 [![SQLite: local-first](https://img.shields.io/badge/SQLite-local--first-003B57.svg)](#)
 [![Recall: LLM-free](https://img.shields.io/badge/Recall-LLM--free-brightgreen.svg)](#)
-[![Injection: 1/19 of Mem0](https://img.shields.io/badge/Injection-1%2F19_of_Mem0-orange.svg)](#)
+[![Injection: quiet by design](https://img.shields.io/badge/Injection-quiet_by_design-orange.svg)](#)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-ff69b4.svg)](#)
 
 **[🔭 触れるデモ / Live Demo](https://shinkai-lab.github.io/trailmem/)**
@@ -28,11 +28,12 @@ it's an index of **trails to memory**. Episodes (summaries of what happened) are
 immutable; only the *access paths* to them strengthen or fade with use, like
 footpaths through grass. Forgetting is a path dying, not data being deleted.
 
-The design goal is **quietness**. Most "AI memory" tools (Mem0, etc.) inject a
-pile of retrieved fragments on every single turn. TrailMem instead recalls
-almost nothing most of the time, and lets a memory *flash back* only when it's
-actually relevant — in a same-scenario comparison, TrailMem injected **1,839
-characters** versus Mem0's **34,737** (about **1/19th**). Recall itself is fully
+The design goal is **quietness**. Many memory tools are built to recall as
+much relevant context as possible on every turn — a valid design for many uses.
+TrailMem explores the opposite trade-off: recall almost nothing most of the
+time, and let a memory *flash back* only when it's actually relevant. In our
+same-scenario benchmark the injection volume differed by roughly **19x**
+(details in `benchmark/`). Recall itself is fully
 LLM-free (pure SQLite, ~0.1s/turn); an LLM is only involved at write-time
 (episode creation), through a pluggable adapter (`claude -p`, Anthropic API, or
 any OpenAI-compatible endpoint). Raw conversation logs are always preserved
@@ -74,9 +75,9 @@ copy of your memories.
 
 ### 静かさという設計目標
 
-TrailMemの出発点は、既存の「AI記憶」ツール（Mem0等）への反発でした。毎ターン大量の関連メモリを問答無用でプロンプトに詰め込む方式は、AIの思考をノイズで埋め、トークンを溶かします。
+多くのAI記憶ツールは「毎ターンできるだけ多くの関連記憶を届ける」方向に設計されています。それが正解な用途も多い一方、常時注入はAIの思考をノイズで埋め、トークンを消費します。TrailMemはその逆側のトレードオフを探るところから始まりました。
 
-TrailMemが目指すのは真逆です。**どれだけ静かにしていて、必要なときにふとフラッシュバックするか。** 実際の比較ベンチ（夏目漱石『こころ』を使った5問比較、2026-06-22実施）では、同じ状況でTrailMemの注入量は**1,839文字**、Mem0は**34,737文字**でした（約19分の1）。ほとんどのターンでTrailMemは何も言いません。
+TrailMemが目指すのは真逆です。**どれだけ静かにしていて、必要なときにふとフラッシュバックするか。** 実際の比較ベンチ（夏目漱石『こころ』を使った5問比較、2026-06-22実施。比較対象は常時注入型の代表としてMem0を使用）では、同じ状況で注入量に約19倍の差がありました（TrailMem: 1,839文字。詳細は`benchmark/`）。ほとんどのターンでTrailMemは何も言いません。
 
 ### 生ログへのTrace可能性
 
