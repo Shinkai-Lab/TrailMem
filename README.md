@@ -13,7 +13,7 @@
 [![Injection: quiet by design](https://img.shields.io/badge/Injection-quiet_by_design-orange.svg)](#)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-ff69b4.svg)](#)
 
-**[🔭 触れるデモ / Live Demo](https://shinkai-lab.github.io/TrailMem/)**
+**[🔭 触れるデモ / Live Demo](https://shinkai-lab.github.io/TrailMem/)** · **[📚 読書家の脳 / A Reader's Brain (12 books)](https://shinkai-lab.github.io/TrailMem/reader.html)**
 
 </div>
 
