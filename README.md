@@ -15,6 +15,8 @@
 
 **[🔭 触れるデモ / Live Demo](https://shinkai-lab.github.io/TrailMem/)** · **[📚 読書家の脳 / A Reader's Brain (12 books)](https://shinkai-lab.github.io/TrailMem/reader.html)**
 
+![A Reader's Brain — 12 books, JA/EN](./docs/assets/reader-brain.png)
+
 </div>
 
 短期記憶（コンテキストウィンドウ）と長期記憶（Obsidianなどのファイル群）の間をつなぐ、第三の記憶層。記憶そのものの保存庫ではなく、**記憶へ辿り着くための獣道のインデックス**です。
@@ -45,7 +47,9 @@ copy of your memories.
 
 ## 🔭 触れるデモ
 
-**[ライブデモ](https://shinkai-lab.github.io/TrailMem/)** *(リポジトリ名が違う場合は差し替え)* — 夏目漱石『こころ』全707段落をTrailMemに時系列で記銘して「育てた」記憶網を、3Dでそのまま触れます。ドラッグで回転、ノードクリックでそのキーワードに紐づく記憶と強度を閲覧。**金色**は何度も想起されて殿堂入りした記憶、**紫**は抽象テーマ（正しさ/裏切り/後悔…）の結び目、線の太さは共起で育った連想の道です。
+**[ライブデモ](https://shinkai-lab.github.io/TrailMem/)** — 夏目漱石『こころ』全707段落をTrailMemに時系列で記銘して「育てた」記憶網を、3Dでそのまま触れます。ドラッグで回転、ノードクリックでそのキーワードに紐づく記憶と強度を閲覧。**金色**は何度も想起されて殿堂入りした記憶、**紫**は抽象テーマ（正しさ/裏切り/後悔…）の結び目、線の太さは共起で育った連想の道です。
+
+**[📚 読書家の脳](https://shinkai-lab.github.io/TrailMem/reader.html)** — 日英の名作12冊・73万字を発表年順に記銘した統合脳。作品ごとに色分け。※ノード1,600超のためマシンによっては描画が重いことがあります。スマホでも閲覧可(凡例は折りたたみ)
 
 あなたのDBで同じものを生成するには: `TRAILMEM_DB=~/.trailmem/trailmem.db bash trailmem-viz.sh my-memory.html`
 
