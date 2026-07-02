@@ -32,7 +32,7 @@ copy of your memories.
 
 ## 🔭 A Demo You Can Touch
 
-**[Live demo](https://shinkai-lab.github.io/trailmem/)** *(swap the URL if your repo name differs)* — a memory web "grown" by feeding all 707 paragraphs of Natsume Sōseki's *Kokoro* into TrailMem in chronological order, browsable in 3D exactly as it grew. Drag to rotate; click a node to see the memories and link strength tied to that keyword. **Gold** marks memories recalled so often they've been enshrined; **purple** marks knots of abstract themes (righteousness / betrayal / regret...); line thickness shows associative paths that thickened through co-occurrence.
+**[Live demo](https://shinkai-lab.github.io/TrailMem/)** *(swap the URL if your repo name differs)* — a memory web "grown" by feeding all 707 paragraphs of Natsume Sōseki's *Kokoro* into TrailMem in chronological order, browsable in 3D exactly as it grew. Drag to rotate; click a node to see the memories and link strength tied to that keyword. **Gold** marks memories recalled so often they've been enshrined; **purple** marks knots of abstract themes (righteousness / betrayal / regret...); line thickness shows associative paths that thickened through co-occurrence.
 
 To generate the same thing from your own DB: `TRAILMEM_DB=~/.trailmem/trailmem.db bash trailmem-viz.sh my-memory.html`
 

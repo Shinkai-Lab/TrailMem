@@ -6,13 +6,14 @@
 
 **静かな中期記憶 — AIエージェントのための、思い出への獣道**
 
+[![Status: Beta](https://img.shields.io/badge/Status-Beta-yellow.svg)](#)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
 [![SQLite: local-first](https://img.shields.io/badge/SQLite-local--first-003B57.svg)](#)
 [![Recall: LLM-free](https://img.shields.io/badge/Recall-LLM--free-brightgreen.svg)](#)
 [![Injection: quiet by design](https://img.shields.io/badge/Injection-quiet_by_design-orange.svg)](#)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-ff69b4.svg)](#)
 
-**[🔭 触れるデモ / Live Demo](https://shinkai-lab.github.io/trailmem/)**
+**[🔭 触れるデモ / Live Demo](https://shinkai-lab.github.io/TrailMem/)**
 
 </div>
 
@@ -44,7 +45,7 @@ copy of your memories.
 
 ## 🔭 触れるデモ
 
-**[ライブデモ](https://shinkai-lab.github.io/trailmem/)** *(リポジトリ名が違う場合は差し替え)* — 夏目漱石『こころ』全707段落をTrailMemに時系列で記銘して「育てた」記憶網を、3Dでそのまま触れます。ドラッグで回転、ノードクリックでそのキーワードに紐づく記憶と強度を閲覧。**金色**は何度も想起されて殿堂入りした記憶、**紫**は抽象テーマ（正しさ/裏切り/後悔…）の結び目、線の太さは共起で育った連想の道です。
+**[ライブデモ](https://shinkai-lab.github.io/TrailMem/)** *(リポジトリ名が違う場合は差し替え)* — 夏目漱石『こころ』全707段落をTrailMemに時系列で記銘して「育てた」記憶網を、3Dでそのまま触れます。ドラッグで回転、ノードクリックでそのキーワードに紐づく記憶と強度を閲覧。**金色**は何度も想起されて殿堂入りした記憶、**紫**は抽象テーマ（正しさ/裏切り/後悔…）の結び目、線の太さは共起で育った連想の道です。
 
 あなたのDBで同じものを生成するには: `TRAILMEM_DB=~/.trailmem/trailmem.db bash trailmem-viz.sh my-memory.html`
 
