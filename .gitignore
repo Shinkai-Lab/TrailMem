@@ -1,0 +1,32 @@
+# DB本体・生成物
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite3
+
+# ログ・一時ファイル
+*.log
+flashback-buffer.jsonl
+noise.txt
+trailmem-viz.html
+/tmp/
+
+# バックアップ
+*.bak
+*.bak-*
+
+# Python
+__pycache__/
+*.pyc
+venv*/
+.venv/
+
+# TrailMemランタイム設定（ユーザーごとに生成される）
+config.json
+state.json
+daemon.pid
+control.json
+
+# OS
+.DS_Store

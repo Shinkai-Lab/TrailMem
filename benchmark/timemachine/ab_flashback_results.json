@@ -1,0 +1,2479 @@
+{
+  "meta": {
+    "goldset": "goldset.jsonl",
+    "n_cases": 30,
+    "base_db": "kokoro_floor_on_sp.db",
+    "scan_sh": "trailmem-scan.sh",
+    "design": "per-question DB reset (turn_seq fixed at grown value for all configs/questions)",
+    "llm_calls": 0,
+    "total_elapsed_sec": 10.59
+  },
+  "aggregate": {
+    "A: DOOR2=0 WEAKEST_FIRST=0 (旧挙動)": {
+      "n_cases": 30,
+      "total_fired": 36,
+      "avg_fired_per_prompt": 1.2,
+      "zero_fire_rate": 0.06666666666666667,
+      "coverage": 0.16666666666666666,
+      "recall_item_avg": 0.041666666666666664,
+      "precision_at_fired_avg": 0.13690476190476192,
+      "precision_denominator_n": 28,
+      "MRR": 0.13333333333333333,
+      "door_type_counts": {
+        "emotion": 35,
+        "convergence": 0,
+        "spread": 1
+      },
+      "n_errors": 0,
+      "elapsed_sec": 2.66
+    },
+    "B: DOOR2=1 WEAKEST_FIRST=0 (収束のみ)": {
+      "n_cases": 30,
+      "total_fired": 71,
+      "avg_fired_per_prompt": 2.3666666666666667,
+      "zero_fire_rate": 0.06666666666666667,
+      "coverage": 0.36666666666666664,
+      "recall_item_avg": 0.15,
+      "precision_at_fired_avg": 0.24404761904761904,
+      "precision_denominator_n": 28,
+      "MRR": 0.3,
+      "door_type_counts": {
+        "emotion": 15,
+        "convergence": 56,
+        "spread": 0
+      },
+      "n_errors": 0,
+      "elapsed_sec": 2.2
+    },
+    "C: DOOR2=0 WEAKEST_FIRST=1 (弱い子優先のみ)": {
+      "n_cases": 30,
+      "total_fired": 36,
+      "avg_fired_per_prompt": 1.2,
+      "zero_fire_rate": 0.06666666666666667,
+      "coverage": 0.16666666666666666,
+      "recall_item_avg": 0.041666666666666664,
+      "precision_at_fired_avg": 0.13690476190476192,
+      "precision_denominator_n": 28,
+      "MRR": 0.15,
+      "door_type_counts": {
+        "emotion": 35,
+        "convergence": 0,
+        "spread": 1
+      },
+      "n_errors": 0,
+      "elapsed_sec": 2.99
+    },
+    "D: DOOR2=1 WEAKEST_FIRST=1 (フル)": {
+      "n_cases": 30,
+      "total_fired": 71,
+      "avg_fired_per_prompt": 2.3666666666666667,
+      "zero_fire_rate": 0.06666666666666667,
+      "coverage": 0.16666666666666666,
+      "recall_item_avg": 0.058333333333333334,
+      "precision_at_fired_avg": 0.1130952380952381,
+      "precision_denominator_n": 28,
+      "MRR": 0.13333333333333333,
+      "door_type_counts": {
+        "emotion": 17,
+        "convergence": 54,
+        "spread": 0
+      },
+      "n_errors": 0,
+      "elapsed_sec": 2.74
+    }
+  },
+  "raw": {
+    "A: DOOR2=0 WEAKEST_FIRST=0 (旧挙動)": {
+      "label": "A",
+      "door2": "0",
+      "weakest_first": "0",
+      "desc": "DOOR2=0 WEAKEST_FIRST=0 (旧挙動)",
+      "n_errors": 0,
+      "elapsed_sec": 2.66,
+      "door_type_counts": {
+        "emotion": 35,
+        "convergence": 0,
+        "spread": 1
+      },
+      "per_case": [
+        {
+          "id": "g001",
+          "prompt": "先生が鎌倉の海で初めて「私」の注意を引いたのは、どのような人物と行動を共にしていたからか。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0170"
+          ],
+          "doors": [
+            "emotion"
+          ],
+          "n_fired": 1,
+          "n_hit": 0,
+          "coverage": 0,
+          "recall_item": 0.0,
+          "precision": 0.0,
+          "rr": 0.0,
+          "stderr": ""
+        },
+        {
+          "id": "g002",
+          "prompt": "先生が毎月欠かさず訪れる墓は誰のものか。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0170"
+          ],
+          "doors": [
+            "emotion"
+          ],
+          "n_fired": 1,
+          "n_hit": 0,
+          "coverage": 0,
+          "recall_item": 0.0,
+          "precision": 0.0,
+          "rr": 0.0,
+          "stderr": ""
+        },
+        {
+          "id": "g003",
+          "prompt": "Kが先生に「好きな人ができた」と打ち明けた時、その相手は誰だったか。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0170"
+          ],
+          "doors": [
+            "emotion"
+          ],
+          "n_fired": 1,
+          "n_hit": 0,
+          "coverage": 0,
+          "recall_item": 0.0,
+          "precision": 0.0,
+          "rr": 0.0,
+          "stderr": ""
+        },
+        {
+          "id": "g004",
+          "prompt": "先生がKに黙って奥さんの母親に結婚を申し込んだのはなぜか。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0170",
+            "kokoro-p0051"
+          ],
+          "doors": [
+            "emotion",
+            "emotion"
+          ],
+          "n_fired": 2,
+          "n_hit": 0,
+          "coverage": 0,
+          "recall_item": 0.0,
+          "precision": 0.0,
+          "rr": 0.0,
+          "stderr": ""
+        },
+        {
+          "id": "g005",
+          "prompt": "Kが口癖のように用いた、自己の弱さを戒める言葉はどのような内容か。",
+          "n_relevant": 4,
+          "fired": [],
+          "doors": [],
+          "n_fired": 0,
+          "n_hit": 0,
+          "coverage": 0,
+          "recall_item": 0.0,
+          "precision": null,
+          "rr": 0.0,
+          "stderr": ""
+        },
+        {
+          "id": "g006",
+          "prompt": "先生はKの死を発見した時、彼のそばにどのようなものが残されていたか。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0170"
+          ],
+          "doors": [
+            "emotion"
+          ],
+          "n_fired": 1,
+          "n_hit": 0,
+          "coverage": 0,
+          "recall_item": 0.0,
+          "precision": 0.0,
+          "rr": 0.0,
+          "stderr": ""
+        },
+        {
+          "id": "g007",
+          "prompt": "KがKなりの「道」を歩もうとしていたとは、具体的にどのような生き方を目指していたか。",
+          "n_relevant": 4,
+          "fired": [],
+          "doors": [],
+          "n_fired": 0,
+          "n_hit": 0,
+          "coverage": 0,
+          "recall_item": 0.0,
+          "precision": null,
+          "rr": 0.0,
+          "stderr": ""
+        },
+        {
+          "id": "g008",
+          "prompt": "先生の叔父はどのようにして先生の財産を奪ったか。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0170",
+            "kokoro-p0421",
+            "kokoro-p0436"
+          ],
+          "doors": [
+            "emotion",
+            "emotion",
+            "emotion"
+          ],
+          "n_fired": 3,
+          "n_hit": 0,
+          "coverage": 0,
+          "recall_item": 0.0,
+          "precision": 0.0,
+          "rr": 0.0,
+          "stderr": ""
+        },
+        {
+          "id": "g009",
+          "prompt": "先生が人間全般を信用できなくなった直接のきっかけは何か。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0170"
+          ],
+          "doors": [
+            "emotion"
+          ],
+          "n_fired": 1,
+          "n_hit": 0,
+          "coverage": 0,
+          "recall_item": 0.0,
+          "precision": 0.0,
+          "rr": 0.0,
+          "stderr": ""
+        },
+        {
+          "id": "g010",
+          "prompt": "先生が大学在学中に下宿を決めた家には、どのような家族が住んでいたか。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0170",
+            "kokoro-p0267"
+          ],
+          "doors": [
+            "emotion",
+            "emotion"
+          ],
+          "n_fired": 2,
+          "n_hit": 0,
+          "coverage": 0,
+          "recall_item": 0.0,
+          "precision": 0.0,
+          "rr": 0.0,
+          "stderr": ""
+        },
+        {
+          "id": "g011",
+          "prompt": "先生がKを同じ下宿に呼び寄せた時、先生の心中にはどのような動機があったか。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0170"
+          ],
+          "doors": [
+            "emotion"
+          ],
+          "n_fired": 1,
+          "n_hit": 0,
+          "coverage": 0,
+          "recall_item": 0.0,
+          "precision": 0.0,
+          "rr": 0.0,
+          "stderr": ""
+        },
+        {
+          "id": "g012",
+          "prompt": "明治天皇が崩御した際、先生はどのような感慨を「私」に対して示したか。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0170"
+          ],
+          "doors": [
+            "emotion"
+          ],
+          "n_fired": 1,
+          "n_hit": 0,
+          "coverage": 0,
+          "recall_item": 0.0,
+          "precision": 0.0,
+          "rr": 0.0,
+          "stderr": ""
+        },
+        {
+          "id": "g013",
+          "prompt": "乃木大将の殉死の知らせは、先生の決意にどのような影響を与えたか。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0170"
+          ],
+          "doors": [
+            "emotion"
+          ],
+          "n_fired": 1,
+          "n_hit": 1,
+          "coverage": 1,
+          "recall_item": 0.25,
+          "precision": 1.0,
+          "rr": 1.0,
+          "stderr": ""
+        },
+        {
+          "id": "g014",
+          "prompt": "先生が「私」に宛てた長い手紙は、「私」がどこにいる時に届いたか。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0170",
+            "kokoro-p0294"
+          ],
+          "doors": [
+            "emotion",
+            "emotion"
+          ],
+          "n_fired": 2,
+          "n_hit": 1,
+          "coverage": 1,
+          "recall_item": 0.25,
+          "precision": 0.5,
+          "rr": 0.5,
+          "stderr": ""
+        },
+        {
+          "id": "g015",
+          "prompt": "「私」が先生の遺書を受け取った後にとった行動は何か。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0170"
+          ],
+          "doors": [
+            "emotion"
+          ],
+          "n_fired": 1,
+          "n_hit": 0,
+          "coverage": 0,
+          "recall_item": 0.0,
+          "precision": 0.0,
+          "rr": 0.0,
+          "stderr": ""
+        },
+        {
+          "id": "g016",
+          "prompt": "先生の妻は夫の過去——Kの死に自分が絡んでいること——を知っていたか。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0170"
+          ],
+          "doors": [
+            "emotion"
+          ],
+          "n_fired": 1,
+          "n_hit": 0,
+          "coverage": 0,
+          "recall_item": 0.0,
+          "precision": 0.0,
+          "rr": 0.0,
+          "stderr": ""
+        },
+        {
+          "id": "g017",
+          "prompt": "先生が生前に「私」にだけ自分の過去を打ち明けようとした理由は何か。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0170"
+          ],
+          "doors": [
+            "emotion"
+          ],
+          "n_fired": 1,
+          "n_hit": 0,
+          "coverage": 0,
+          "recall_item": 0.0,
+          "precision": 0.0,
+          "rr": 0.0,
+          "stderr": ""
+        },
+        {
+          "id": "g018",
+          "prompt": "「私」の父が患っていた病気は何で、その経過はどのようなものだったか。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0170"
+          ],
+          "doors": [
+            "spread"
+          ],
+          "n_fired": 1,
+          "n_hit": 0,
+          "coverage": 0,
+          "recall_item": 0.0,
+          "precision": 0.0,
+          "rr": 0.0,
+          "stderr": ""
+        },
+        {
+          "id": "g019",
+          "prompt": "「私」の父は先生の死の知らせを受け取ったか。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0170"
+          ],
+          "doors": [
+            "emotion"
+          ],
+          "n_fired": 1,
+          "n_hit": 0,
+          "coverage": 0,
+          "recall_item": 0.0,
+          "precision": 0.0,
+          "rr": 0.0,
+          "stderr": ""
+        },
+        {
+          "id": "g020",
+          "prompt": "「私」の母は息子が東京の大学を卒業した後、どうしてほしいと望んでいたか。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0177",
+            "kokoro-p0421",
+            "kokoro-p0267"
+          ],
+          "doors": [
+            "emotion",
+            "emotion",
+            "emotion"
+          ],
+          "n_fired": 3,
+          "n_hit": 1,
+          "coverage": 1,
+          "recall_item": 0.25,
+          "precision": 0.3333333333333333,
+          "rr": 0.5,
+          "stderr": ""
+        },
+        {
+          "id": "g021",
+          "prompt": "先生とお嬢さんが結婚したことをKが知った時、Kはどのような反応を見せたか。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0487",
+            "kokoro-p0170"
+          ],
+          "doors": [
+            "emotion",
+            "emotion"
+          ],
+          "n_fired": 2,
+          "n_hit": 0,
+          "coverage": 0,
+          "recall_item": 0.0,
+          "precision": 0.0,
+          "rr": 0.0,
+          "stderr": ""
+        },
+        {
+          "id": "g022",
+          "prompt": "先生が感じ続けた「罪」の核心は何か。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0170"
+          ],
+          "doors": [
+            "emotion"
+          ],
+          "n_fired": 1,
+          "n_hit": 0,
+          "coverage": 0,
+          "recall_item": 0.0,
+          "precision": 0.0,
+          "rr": 0.0,
+          "stderr": ""
+        },
+        {
+          "id": "g023",
+          "prompt": "先生が社会に出て働かず、孤独に暮らしていた表向きの理由として周囲にはどう映っていたか。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0170"
+          ],
+          "doors": [
+            "emotion"
+          ],
+          "n_fired": 1,
+          "n_hit": 0,
+          "coverage": 0,
+          "recall_item": 0.0,
+          "precision": 0.0,
+          "rr": 0.0,
+          "stderr": ""
+        },
+        {
+          "id": "g024",
+          "prompt": "KとKが慕うお嬢さんとの間で、Kは自分の「道」とどちらを優先すべきか葛藤したか。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0487"
+          ],
+          "doors": [
+            "emotion"
+          ],
+          "n_fired": 1,
+          "n_hit": 0,
+          "coverage": 0,
+          "recall_item": 0.0,
+          "precision": 0.0,
+          "rr": 0.0,
+          "stderr": ""
+        },
+        {
+          "id": "g025",
+          "prompt": "先生が「私」に初めて自宅を訪ねさせた時、先生の妻はどのような人物として描かれているか。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0170"
+          ],
+          "doors": [
+            "emotion"
+          ],
+          "n_fired": 1,
+          "n_hit": 0,
+          "coverage": 0,
+          "recall_item": 0.0,
+          "precision": 0.0,
+          "rr": 0.0,
+          "stderr": ""
+        },
+        {
+          "id": "g026",
+          "prompt": "先生が親しい友人の死をきっかけに「自分も死ぬべきだった」と感じていたのはなぜか。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0170"
+          ],
+          "doors": [
+            "emotion"
+          ],
+          "n_fired": 1,
+          "n_hit": 0,
+          "coverage": 0,
+          "recall_item": 0.0,
+          "precision": 0.0,
+          "rr": 0.0,
+          "stderr": ""
+        },
+        {
+          "id": "g027",
+          "prompt": "「私」が鎌倉で先生と初めて言葉を交わすきっかけとなった状況は何か。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0170"
+          ],
+          "doors": [
+            "emotion"
+          ],
+          "n_fired": 1,
+          "n_hit": 0,
+          "coverage": 0,
+          "recall_item": 0.0,
+          "precision": 0.0,
+          "rr": 0.0,
+          "stderr": ""
+        },
+        {
+          "id": "g028",
+          "prompt": "先生の遺書の中で、先生はKの自殺の直接的な原因をどのように解釈していたか。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0170"
+          ],
+          "doors": [
+            "emotion"
+          ],
+          "n_fired": 1,
+          "n_hit": 1,
+          "coverage": 1,
+          "recall_item": 0.25,
+          "precision": 1.0,
+          "rr": 1.0,
+          "stderr": ""
+        },
+        {
+          "id": "g029",
+          "prompt": "先生が「私」との関係を通じて唯一得ようとしていたものは何か。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0170"
+          ],
+          "doors": [
+            "emotion"
+          ],
+          "n_fired": 1,
+          "n_hit": 0,
+          "coverage": 0,
+          "recall_item": 0.0,
+          "precision": 0.0,
+          "rr": 0.0,
+          "stderr": ""
+        },
+        {
+          "id": "g030",
+          "prompt": "先生の遺書が完成し送り出された時、先生はその後どうしたか。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0170"
+          ],
+          "doors": [
+            "emotion"
+          ],
+          "n_fired": 1,
+          "n_hit": 1,
+          "coverage": 1,
+          "recall_item": 0.25,
+          "precision": 1.0,
+          "rr": 1.0,
+          "stderr": ""
+        }
+      ]
+    },
+    "B: DOOR2=1 WEAKEST_FIRST=0 (収束のみ)": {
+      "label": "B",
+      "door2": "1",
+      "weakest_first": "0",
+      "desc": "DOOR2=1 WEAKEST_FIRST=0 (収束のみ)",
+      "n_errors": 0,
+      "elapsed_sec": 2.2,
+      "door_type_counts": {
+        "emotion": 15,
+        "convergence": 56,
+        "spread": 0
+      },
+      "per_case": [
+        {
+          "id": "g001",
+          "prompt": "先生が鎌倉の海で初めて「私」の注意を引いたのは、どのような人物と行動を共にしていたからか。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0018",
+            "kokoro-p0002",
+            "kokoro-p0023"
+          ],
+          "doors": [
+            "convergence",
+            "convergence",
+            "convergence"
+          ],
+          "n_fired": 3,
+          "n_hit": 3,
+          "coverage": 1,
+          "recall_item": 0.75,
+          "precision": 1.0,
+          "rr": 1.0,
+          "stderr": ""
+        },
+        {
+          "id": "g002",
+          "prompt": "先生が毎月欠かさず訪れる墓は誰のものか。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0170",
+            "kokoro-p0038"
+          ],
+          "doors": [
+            "emotion",
+            "convergence"
+          ],
+          "n_fired": 2,
+          "n_hit": 0,
+          "coverage": 0,
+          "recall_item": 0.0,
+          "precision": 0.0,
+          "rr": 0.0,
+          "stderr": ""
+        },
+        {
+          "id": "g003",
+          "prompt": "Kが先生に「好きな人ができた」と打ち明けた時、その相手は誰だったか。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0170"
+          ],
+          "doors": [
+            "emotion"
+          ],
+          "n_fired": 1,
+          "n_hit": 0,
+          "coverage": 0,
+          "recall_item": 0.0,
+          "precision": 0.0,
+          "rr": 0.0,
+          "stderr": ""
+        },
+        {
+          "id": "g004",
+          "prompt": "先生がKに黙って奥さんの母親に結婚を申し込んだのはなぜか。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0646",
+            "kokoro-p0651",
+            "kokoro-p0683"
+          ],
+          "doors": [
+            "convergence",
+            "convergence",
+            "convergence"
+          ],
+          "n_fired": 3,
+          "n_hit": 1,
+          "coverage": 1,
+          "recall_item": 0.25,
+          "precision": 0.3333333333333333,
+          "rr": 0.5,
+          "stderr": ""
+        },
+        {
+          "id": "g005",
+          "prompt": "Kが口癖のように用いた、自己の弱さを戒める言葉はどのような内容か。",
+          "n_relevant": 4,
+          "fired": [],
+          "doors": [],
+          "n_fired": 0,
+          "n_hit": 0,
+          "coverage": 0,
+          "recall_item": 0.0,
+          "precision": null,
+          "rr": 0.0,
+          "stderr": ""
+        },
+        {
+          "id": "g006",
+          "prompt": "先生はKの死を発見した時、彼のそばにどのようなものが残されていたか。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0670",
+            "kokoro-p0667",
+            "kokoro-p0666"
+          ],
+          "doors": [
+            "convergence",
+            "convergence",
+            "convergence"
+          ],
+          "n_fired": 3,
+          "n_hit": 0,
+          "coverage": 0,
+          "recall_item": 0.0,
+          "precision": 0.0,
+          "rr": 0.0,
+          "stderr": ""
+        },
+        {
+          "id": "g007",
+          "prompt": "KがKなりの「道」を歩もうとしていたとは、具体的にどのような生き方を目指していたか。",
+          "n_relevant": 4,
+          "fired": [],
+          "doors": [],
+          "n_fired": 0,
+          "n_hit": 0,
+          "coverage": 0,
+          "recall_item": 0.0,
+          "precision": null,
+          "rr": 0.0,
+          "stderr": ""
+        },
+        {
+          "id": "g008",
+          "prompt": "先生の叔父はどのようにして先生の財産を奪ったか。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0681",
+            "kokoro-p0191",
+            "kokoro-p0425"
+          ],
+          "doors": [
+            "convergence",
+            "convergence",
+            "convergence"
+          ],
+          "n_fired": 3,
+          "n_hit": 1,
+          "coverage": 1,
+          "recall_item": 0.25,
+          "precision": 0.3333333333333333,
+          "rr": 1.0,
+          "stderr": ""
+        },
+        {
+          "id": "g009",
+          "prompt": "先生が人間全般を信用できなくなった直接のきっかけは何か。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0170"
+          ],
+          "doors": [
+            "emotion"
+          ],
+          "n_fired": 1,
+          "n_hit": 0,
+          "coverage": 0,
+          "recall_item": 0.0,
+          "precision": 0.0,
+          "rr": 0.0,
+          "stderr": ""
+        },
+        {
+          "id": "g010",
+          "prompt": "先生が大学在学中に下宿を決めた家には、どのような家族が住んでいたか。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0170",
+            "kokoro-p0267"
+          ],
+          "doors": [
+            "emotion",
+            "emotion"
+          ],
+          "n_fired": 2,
+          "n_hit": 0,
+          "coverage": 0,
+          "recall_item": 0.0,
+          "precision": 0.0,
+          "rr": 0.0,
+          "stderr": ""
+        },
+        {
+          "id": "g011",
+          "prompt": "先生がKを同じ下宿に呼び寄せた時、先生の心中にはどのような動機があったか。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0170",
+            "kokoro-p0544",
+            "kokoro-p0507"
+          ],
+          "doors": [
+            "emotion",
+            "convergence",
+            "convergence"
+          ],
+          "n_fired": 3,
+          "n_hit": 1,
+          "coverage": 1,
+          "recall_item": 0.25,
+          "precision": 0.3333333333333333,
+          "rr": 0.5,
+          "stderr": ""
+        },
+        {
+          "id": "g012",
+          "prompt": "明治天皇が崩御した際、先生はどのような感慨を「私」に対して示したか。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0701",
+            "kokoro-p0700",
+            "kokoro-p0290"
+          ],
+          "doors": [
+            "convergence",
+            "convergence",
+            "convergence"
+          ],
+          "n_fired": 3,
+          "n_hit": 0,
+          "coverage": 0,
+          "recall_item": 0.0,
+          "precision": 0.0,
+          "rr": 0.0,
+          "stderr": ""
+        },
+        {
+          "id": "g013",
+          "prompt": "乃木大将の殉死の知らせは、先生の決意にどのような影響を与えたか。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0701",
+            "kokoro-p0170"
+          ],
+          "doors": [
+            "convergence",
+            "emotion"
+          ],
+          "n_fired": 2,
+          "n_hit": 1,
+          "coverage": 1,
+          "recall_item": 0.25,
+          "precision": 0.5,
+          "rr": 0.5,
+          "stderr": ""
+        },
+        {
+          "id": "g014",
+          "prompt": "先生が「私」に宛てた長い手紙は、「私」がどこにいる時に届いたか。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0383",
+            "kokoro-p0658",
+            "kokoro-p0657"
+          ],
+          "doors": [
+            "convergence",
+            "convergence",
+            "convergence"
+          ],
+          "n_fired": 3,
+          "n_hit": 0,
+          "coverage": 0,
+          "recall_item": 0.0,
+          "precision": 0.0,
+          "rr": 0.0,
+          "stderr": ""
+        },
+        {
+          "id": "g015",
+          "prompt": "「私」が先生の遺書を受け取った後にとった行動は何か。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0148",
+            "kokoro-p0102",
+            "kokoro-p0170"
+          ],
+          "doors": [
+            "convergence",
+            "convergence",
+            "emotion"
+          ],
+          "n_fired": 3,
+          "n_hit": 0,
+          "coverage": 0,
+          "recall_item": 0.0,
+          "precision": 0.0,
+          "rr": 0.0,
+          "stderr": ""
+        },
+        {
+          "id": "g016",
+          "prompt": "先生の妻は夫の過去——Kの死に自分が絡んでいること——を知っていたか。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0670",
+            "kokoro-p0667",
+            "kokoro-p0666"
+          ],
+          "doors": [
+            "convergence",
+            "convergence",
+            "convergence"
+          ],
+          "n_fired": 3,
+          "n_hit": 0,
+          "coverage": 0,
+          "recall_item": 0.0,
+          "precision": 0.0,
+          "rr": 0.0,
+          "stderr": ""
+        },
+        {
+          "id": "g017",
+          "prompt": "先生が生前に「私」にだけ自分の過去を打ち明けようとした理由は何か。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0148",
+            "kokoro-p0102",
+            "kokoro-p0170"
+          ],
+          "doors": [
+            "convergence",
+            "convergence",
+            "emotion"
+          ],
+          "n_fired": 3,
+          "n_hit": 0,
+          "coverage": 0,
+          "recall_item": 0.0,
+          "precision": 0.0,
+          "rr": 0.0,
+          "stderr": ""
+        },
+        {
+          "id": "g018",
+          "prompt": "「私」の父が患っていた病気は何で、その経過はどのようなものだったか。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0168",
+            "kokoro-p0421",
+            "kokoro-p0681"
+          ],
+          "doors": [
+            "convergence",
+            "convergence",
+            "convergence"
+          ],
+          "n_fired": 3,
+          "n_hit": 2,
+          "coverage": 1,
+          "recall_item": 0.5,
+          "precision": 0.6666666666666666,
+          "rr": 1.0,
+          "stderr": ""
+        },
+        {
+          "id": "g019",
+          "prompt": "「私」の父は先生の死の知らせを受け取ったか。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0168",
+            "kokoro-p0670",
+            "kokoro-p0343"
+          ],
+          "doors": [
+            "convergence",
+            "convergence",
+            "convergence"
+          ],
+          "n_fired": 3,
+          "n_hit": 0,
+          "coverage": 0,
+          "recall_item": 0.0,
+          "precision": 0.0,
+          "rr": 0.0,
+          "stderr": ""
+        },
+        {
+          "id": "g020",
+          "prompt": "「私」の母は息子が東京の大学を卒業した後、どうしてほしいと望んでいたか。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0674",
+            "kokoro-p0697",
+            "kokoro-p0370"
+          ],
+          "doors": [
+            "convergence",
+            "convergence",
+            "convergence"
+          ],
+          "n_fired": 3,
+          "n_hit": 0,
+          "coverage": 0,
+          "recall_item": 0.0,
+          "precision": 0.0,
+          "rr": 0.0,
+          "stderr": ""
+        },
+        {
+          "id": "g021",
+          "prompt": "先生とお嬢さんが結婚したことをKが知った時、Kはどのような反応を見せたか。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0651",
+            "kokoro-p0674",
+            "kokoro-p0578"
+          ],
+          "doors": [
+            "convergence",
+            "convergence",
+            "convergence"
+          ],
+          "n_fired": 3,
+          "n_hit": 2,
+          "coverage": 1,
+          "recall_item": 0.5,
+          "precision": 0.6666666666666666,
+          "rr": 1.0,
+          "stderr": ""
+        },
+        {
+          "id": "g022",
+          "prompt": "先生が感じ続けた「罪」の核心は何か。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0170",
+            "kokoro-p0102",
+            "kokoro-p0082"
+          ],
+          "doors": [
+            "emotion",
+            "convergence",
+            "convergence"
+          ],
+          "n_fired": 3,
+          "n_hit": 0,
+          "coverage": 0,
+          "recall_item": 0.0,
+          "precision": 0.0,
+          "rr": 0.0,
+          "stderr": ""
+        },
+        {
+          "id": "g023",
+          "prompt": "先生が社会に出て働かず、孤独に暮らしていた表向きの理由として周囲にはどう映っていたか。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0170"
+          ],
+          "doors": [
+            "emotion"
+          ],
+          "n_fired": 1,
+          "n_hit": 0,
+          "coverage": 0,
+          "recall_item": 0.0,
+          "precision": 0.0,
+          "rr": 0.0,
+          "stderr": ""
+        },
+        {
+          "id": "g024",
+          "prompt": "KとKが慕うお嬢さんとの間で、Kは自分の「道」とどちらを優先すべきか葛藤したか。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0669",
+            "kokoro-p0668",
+            "kokoro-p0663"
+          ],
+          "doors": [
+            "convergence",
+            "convergence",
+            "convergence"
+          ],
+          "n_fired": 3,
+          "n_hit": 0,
+          "coverage": 0,
+          "recall_item": 0.0,
+          "precision": 0.0,
+          "rr": 0.0,
+          "stderr": ""
+        },
+        {
+          "id": "g025",
+          "prompt": "先生が「私」に初めて自宅を訪ねさせた時、先生の妻はどのような人物として描かれているか。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0148",
+            "kokoro-p0102",
+            "kokoro-p0170"
+          ],
+          "doors": [
+            "convergence",
+            "convergence",
+            "emotion"
+          ],
+          "n_fired": 3,
+          "n_hit": 0,
+          "coverage": 0,
+          "recall_item": 0.0,
+          "precision": 0.0,
+          "rr": 0.0,
+          "stderr": ""
+        },
+        {
+          "id": "g026",
+          "prompt": "先生が親しい友人の死をきっかけに「自分も死ぬべきだった」と感じていたのはなぜか。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0170"
+          ],
+          "doors": [
+            "emotion"
+          ],
+          "n_fired": 1,
+          "n_hit": 0,
+          "coverage": 0,
+          "recall_item": 0.0,
+          "precision": 0.0,
+          "rr": 0.0,
+          "stderr": ""
+        },
+        {
+          "id": "g027",
+          "prompt": "「私」が鎌倉で先生と初めて言葉を交わすきっかけとなった状況は何か。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0018",
+            "kokoro-p0023",
+            "kokoro-p0148"
+          ],
+          "doors": [
+            "convergence",
+            "convergence",
+            "convergence"
+          ],
+          "n_fired": 3,
+          "n_hit": 2,
+          "coverage": 1,
+          "recall_item": 0.5,
+          "precision": 0.6666666666666666,
+          "rr": 1.0,
+          "stderr": ""
+        },
+        {
+          "id": "g028",
+          "prompt": "先生の遺書の中で、先生はKの自殺の直接的な原因をどのように解釈していたか。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0663",
+            "kokoro-p0657",
+            "kokoro-p0653"
+          ],
+          "doors": [
+            "convergence",
+            "convergence",
+            "convergence"
+          ],
+          "n_fired": 3,
+          "n_hit": 3,
+          "coverage": 1,
+          "recall_item": 0.75,
+          "precision": 1.0,
+          "rr": 1.0,
+          "stderr": ""
+        },
+        {
+          "id": "g029",
+          "prompt": "先生が「私」との関係を通じて唯一得ようとしていたものは何か。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0148",
+            "kokoro-p0102",
+            "kokoro-p0170"
+          ],
+          "doors": [
+            "convergence",
+            "convergence",
+            "emotion"
+          ],
+          "n_fired": 3,
+          "n_hit": 1,
+          "coverage": 1,
+          "recall_item": 0.25,
+          "precision": 0.3333333333333333,
+          "rr": 0.5,
+          "stderr": ""
+        },
+        {
+          "id": "g030",
+          "prompt": "先生の遺書が完成し送り出された時、先生はその後どうしたか。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0170"
+          ],
+          "doors": [
+            "emotion"
+          ],
+          "n_fired": 1,
+          "n_hit": 1,
+          "coverage": 1,
+          "recall_item": 0.25,
+          "precision": 1.0,
+          "rr": 1.0,
+          "stderr": ""
+        }
+      ]
+    },
+    "C: DOOR2=0 WEAKEST_FIRST=1 (弱い子優先のみ)": {
+      "label": "C",
+      "door2": "0",
+      "weakest_first": "1",
+      "desc": "DOOR2=0 WEAKEST_FIRST=1 (弱い子優先のみ)",
+      "n_errors": 0,
+      "elapsed_sec": 2.99,
+      "door_type_counts": {
+        "emotion": 35,
+        "convergence": 0,
+        "spread": 1
+      },
+      "per_case": [
+        {
+          "id": "g001",
+          "prompt": "先生が鎌倉の海で初めて「私」の注意を引いたのは、どのような人物と行動を共にしていたからか。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0170"
+          ],
+          "doors": [
+            "emotion"
+          ],
+          "n_fired": 1,
+          "n_hit": 0,
+          "coverage": 0,
+          "recall_item": 0.0,
+          "precision": 0.0,
+          "rr": 0.0,
+          "stderr": ""
+        },
+        {
+          "id": "g002",
+          "prompt": "先生が毎月欠かさず訪れる墓は誰のものか。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0170"
+          ],
+          "doors": [
+            "emotion"
+          ],
+          "n_fired": 1,
+          "n_hit": 0,
+          "coverage": 0,
+          "recall_item": 0.0,
+          "precision": 0.0,
+          "rr": 0.0,
+          "stderr": ""
+        },
+        {
+          "id": "g003",
+          "prompt": "Kが先生に「好きな人ができた」と打ち明けた時、その相手は誰だったか。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0170"
+          ],
+          "doors": [
+            "emotion"
+          ],
+          "n_fired": 1,
+          "n_hit": 0,
+          "coverage": 0,
+          "recall_item": 0.0,
+          "precision": 0.0,
+          "rr": 0.0,
+          "stderr": ""
+        },
+        {
+          "id": "g004",
+          "prompt": "先生がKに黙って奥さんの母親に結婚を申し込んだのはなぜか。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0051",
+            "kokoro-p0170"
+          ],
+          "doors": [
+            "emotion",
+            "emotion"
+          ],
+          "n_fired": 2,
+          "n_hit": 0,
+          "coverage": 0,
+          "recall_item": 0.0,
+          "precision": 0.0,
+          "rr": 0.0,
+          "stderr": ""
+        },
+        {
+          "id": "g005",
+          "prompt": "Kが口癖のように用いた、自己の弱さを戒める言葉はどのような内容か。",
+          "n_relevant": 4,
+          "fired": [],
+          "doors": [],
+          "n_fired": 0,
+          "n_hit": 0,
+          "coverage": 0,
+          "recall_item": 0.0,
+          "precision": null,
+          "rr": 0.0,
+          "stderr": ""
+        },
+        {
+          "id": "g006",
+          "prompt": "先生はKの死を発見した時、彼のそばにどのようなものが残されていたか。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0170"
+          ],
+          "doors": [
+            "emotion"
+          ],
+          "n_fired": 1,
+          "n_hit": 0,
+          "coverage": 0,
+          "recall_item": 0.0,
+          "precision": 0.0,
+          "rr": 0.0,
+          "stderr": ""
+        },
+        {
+          "id": "g007",
+          "prompt": "KがKなりの「道」を歩もうとしていたとは、具体的にどのような生き方を目指していたか。",
+          "n_relevant": 4,
+          "fired": [],
+          "doors": [],
+          "n_fired": 0,
+          "n_hit": 0,
+          "coverage": 0,
+          "recall_item": 0.0,
+          "precision": null,
+          "rr": 0.0,
+          "stderr": ""
+        },
+        {
+          "id": "g008",
+          "prompt": "先生の叔父はどのようにして先生の財産を奪ったか。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0436",
+            "kokoro-p0421",
+            "kokoro-p0170"
+          ],
+          "doors": [
+            "emotion",
+            "emotion",
+            "emotion"
+          ],
+          "n_fired": 3,
+          "n_hit": 0,
+          "coverage": 0,
+          "recall_item": 0.0,
+          "precision": 0.0,
+          "rr": 0.0,
+          "stderr": ""
+        },
+        {
+          "id": "g009",
+          "prompt": "先生が人間全般を信用できなくなった直接のきっかけは何か。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0170"
+          ],
+          "doors": [
+            "emotion"
+          ],
+          "n_fired": 1,
+          "n_hit": 0,
+          "coverage": 0,
+          "recall_item": 0.0,
+          "precision": 0.0,
+          "rr": 0.0,
+          "stderr": ""
+        },
+        {
+          "id": "g010",
+          "prompt": "先生が大学在学中に下宿を決めた家には、どのような家族が住んでいたか。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0267",
+            "kokoro-p0170"
+          ],
+          "doors": [
+            "emotion",
+            "emotion"
+          ],
+          "n_fired": 2,
+          "n_hit": 0,
+          "coverage": 0,
+          "recall_item": 0.0,
+          "precision": 0.0,
+          "rr": 0.0,
+          "stderr": ""
+        },
+        {
+          "id": "g011",
+          "prompt": "先生がKを同じ下宿に呼び寄せた時、先生の心中にはどのような動機があったか。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0170"
+          ],
+          "doors": [
+            "emotion"
+          ],
+          "n_fired": 1,
+          "n_hit": 0,
+          "coverage": 0,
+          "recall_item": 0.0,
+          "precision": 0.0,
+          "rr": 0.0,
+          "stderr": ""
+        },
+        {
+          "id": "g012",
+          "prompt": "明治天皇が崩御した際、先生はどのような感慨を「私」に対して示したか。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0170"
+          ],
+          "doors": [
+            "emotion"
+          ],
+          "n_fired": 1,
+          "n_hit": 0,
+          "coverage": 0,
+          "recall_item": 0.0,
+          "precision": 0.0,
+          "rr": 0.0,
+          "stderr": ""
+        },
+        {
+          "id": "g013",
+          "prompt": "乃木大将の殉死の知らせは、先生の決意にどのような影響を与えたか。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0170"
+          ],
+          "doors": [
+            "emotion"
+          ],
+          "n_fired": 1,
+          "n_hit": 1,
+          "coverage": 1,
+          "recall_item": 0.25,
+          "precision": 1.0,
+          "rr": 1.0,
+          "stderr": ""
+        },
+        {
+          "id": "g014",
+          "prompt": "先生が「私」に宛てた長い手紙は、「私」がどこにいる時に届いたか。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0294",
+            "kokoro-p0170"
+          ],
+          "doors": [
+            "emotion",
+            "emotion"
+          ],
+          "n_fired": 2,
+          "n_hit": 1,
+          "coverage": 1,
+          "recall_item": 0.25,
+          "precision": 0.5,
+          "rr": 1.0,
+          "stderr": ""
+        },
+        {
+          "id": "g015",
+          "prompt": "「私」が先生の遺書を受け取った後にとった行動は何か。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0170"
+          ],
+          "doors": [
+            "emotion"
+          ],
+          "n_fired": 1,
+          "n_hit": 0,
+          "coverage": 0,
+          "recall_item": 0.0,
+          "precision": 0.0,
+          "rr": 0.0,
+          "stderr": ""
+        },
+        {
+          "id": "g016",
+          "prompt": "先生の妻は夫の過去——Kの死に自分が絡んでいること——を知っていたか。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0170"
+          ],
+          "doors": [
+            "emotion"
+          ],
+          "n_fired": 1,
+          "n_hit": 0,
+          "coverage": 0,
+          "recall_item": 0.0,
+          "precision": 0.0,
+          "rr": 0.0,
+          "stderr": ""
+        },
+        {
+          "id": "g017",
+          "prompt": "先生が生前に「私」にだけ自分の過去を打ち明けようとした理由は何か。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0170"
+          ],
+          "doors": [
+            "emotion"
+          ],
+          "n_fired": 1,
+          "n_hit": 0,
+          "coverage": 0,
+          "recall_item": 0.0,
+          "precision": 0.0,
+          "rr": 0.0,
+          "stderr": ""
+        },
+        {
+          "id": "g018",
+          "prompt": "「私」の父が患っていた病気は何で、その経過はどのようなものだったか。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0170"
+          ],
+          "doors": [
+            "spread"
+          ],
+          "n_fired": 1,
+          "n_hit": 0,
+          "coverage": 0,
+          "recall_item": 0.0,
+          "precision": 0.0,
+          "rr": 0.0,
+          "stderr": ""
+        },
+        {
+          "id": "g019",
+          "prompt": "「私」の父は先生の死の知らせを受け取ったか。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0170"
+          ],
+          "doors": [
+            "emotion"
+          ],
+          "n_fired": 1,
+          "n_hit": 0,
+          "coverage": 0,
+          "recall_item": 0.0,
+          "precision": 0.0,
+          "rr": 0.0,
+          "stderr": ""
+        },
+        {
+          "id": "g020",
+          "prompt": "「私」の母は息子が東京の大学を卒業した後、どうしてほしいと望んでいたか。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0267",
+            "kokoro-p0421",
+            "kokoro-p0177"
+          ],
+          "doors": [
+            "emotion",
+            "emotion",
+            "emotion"
+          ],
+          "n_fired": 3,
+          "n_hit": 1,
+          "coverage": 1,
+          "recall_item": 0.25,
+          "precision": 0.3333333333333333,
+          "rr": 0.5,
+          "stderr": ""
+        },
+        {
+          "id": "g021",
+          "prompt": "先生とお嬢さんが結婚したことをKが知った時、Kはどのような反応を見せたか。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0170",
+            "kokoro-p0487"
+          ],
+          "doors": [
+            "emotion",
+            "emotion"
+          ],
+          "n_fired": 2,
+          "n_hit": 0,
+          "coverage": 0,
+          "recall_item": 0.0,
+          "precision": 0.0,
+          "rr": 0.0,
+          "stderr": ""
+        },
+        {
+          "id": "g022",
+          "prompt": "先生が感じ続けた「罪」の核心は何か。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0170"
+          ],
+          "doors": [
+            "emotion"
+          ],
+          "n_fired": 1,
+          "n_hit": 0,
+          "coverage": 0,
+          "recall_item": 0.0,
+          "precision": 0.0,
+          "rr": 0.0,
+          "stderr": ""
+        },
+        {
+          "id": "g023",
+          "prompt": "先生が社会に出て働かず、孤独に暮らしていた表向きの理由として周囲にはどう映っていたか。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0170"
+          ],
+          "doors": [
+            "emotion"
+          ],
+          "n_fired": 1,
+          "n_hit": 0,
+          "coverage": 0,
+          "recall_item": 0.0,
+          "precision": 0.0,
+          "rr": 0.0,
+          "stderr": ""
+        },
+        {
+          "id": "g024",
+          "prompt": "KとKが慕うお嬢さんとの間で、Kは自分の「道」とどちらを優先すべきか葛藤したか。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0487"
+          ],
+          "doors": [
+            "emotion"
+          ],
+          "n_fired": 1,
+          "n_hit": 0,
+          "coverage": 0,
+          "recall_item": 0.0,
+          "precision": 0.0,
+          "rr": 0.0,
+          "stderr": ""
+        },
+        {
+          "id": "g025",
+          "prompt": "先生が「私」に初めて自宅を訪ねさせた時、先生の妻はどのような人物として描かれているか。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0170"
+          ],
+          "doors": [
+            "emotion"
+          ],
+          "n_fired": 1,
+          "n_hit": 0,
+          "coverage": 0,
+          "recall_item": 0.0,
+          "precision": 0.0,
+          "rr": 0.0,
+          "stderr": ""
+        },
+        {
+          "id": "g026",
+          "prompt": "先生が親しい友人の死をきっかけに「自分も死ぬべきだった」と感じていたのはなぜか。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0170"
+          ],
+          "doors": [
+            "emotion"
+          ],
+          "n_fired": 1,
+          "n_hit": 0,
+          "coverage": 0,
+          "recall_item": 0.0,
+          "precision": 0.0,
+          "rr": 0.0,
+          "stderr": ""
+        },
+        {
+          "id": "g027",
+          "prompt": "「私」が鎌倉で先生と初めて言葉を交わすきっかけとなった状況は何か。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0170"
+          ],
+          "doors": [
+            "emotion"
+          ],
+          "n_fired": 1,
+          "n_hit": 0,
+          "coverage": 0,
+          "recall_item": 0.0,
+          "precision": 0.0,
+          "rr": 0.0,
+          "stderr": ""
+        },
+        {
+          "id": "g028",
+          "prompt": "先生の遺書の中で、先生はKの自殺の直接的な原因をどのように解釈していたか。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0170"
+          ],
+          "doors": [
+            "emotion"
+          ],
+          "n_fired": 1,
+          "n_hit": 1,
+          "coverage": 1,
+          "recall_item": 0.25,
+          "precision": 1.0,
+          "rr": 1.0,
+          "stderr": ""
+        },
+        {
+          "id": "g029",
+          "prompt": "先生が「私」との関係を通じて唯一得ようとしていたものは何か。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0170"
+          ],
+          "doors": [
+            "emotion"
+          ],
+          "n_fired": 1,
+          "n_hit": 0,
+          "coverage": 0,
+          "recall_item": 0.0,
+          "precision": 0.0,
+          "rr": 0.0,
+          "stderr": ""
+        },
+        {
+          "id": "g030",
+          "prompt": "先生の遺書が完成し送り出された時、先生はその後どうしたか。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0170"
+          ],
+          "doors": [
+            "emotion"
+          ],
+          "n_fired": 1,
+          "n_hit": 1,
+          "coverage": 1,
+          "recall_item": 0.25,
+          "precision": 1.0,
+          "rr": 1.0,
+          "stderr": ""
+        }
+      ]
+    },
+    "D: DOOR2=1 WEAKEST_FIRST=1 (フル)": {
+      "label": "D",
+      "door2": "1",
+      "weakest_first": "1",
+      "desc": "DOOR2=1 WEAKEST_FIRST=1 (フル)",
+      "n_errors": 0,
+      "elapsed_sec": 2.74,
+      "door_type_counts": {
+        "emotion": 17,
+        "convergence": 54,
+        "spread": 0
+      },
+      "per_case": [
+        {
+          "id": "g001",
+          "prompt": "先生が鎌倉の海で初めて「私」の注意を引いたのは、どのような人物と行動を共にしていたからか。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0007",
+            "kokoro-p0014",
+            "kokoro-p0016"
+          ],
+          "doors": [
+            "convergence",
+            "convergence",
+            "convergence"
+          ],
+          "n_fired": 3,
+          "n_hit": 0,
+          "coverage": 0,
+          "recall_item": 0.0,
+          "precision": 0.0,
+          "rr": 0.0,
+          "stderr": ""
+        },
+        {
+          "id": "g002",
+          "prompt": "先生が毎月欠かさず訪れる墓は誰のものか。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0038",
+            "kokoro-p0170"
+          ],
+          "doors": [
+            "convergence",
+            "emotion"
+          ],
+          "n_fired": 2,
+          "n_hit": 0,
+          "coverage": 0,
+          "recall_item": 0.0,
+          "precision": 0.0,
+          "rr": 0.0,
+          "stderr": ""
+        },
+        {
+          "id": "g003",
+          "prompt": "Kが先生に「好きな人ができた」と打ち明けた時、その相手は誰だったか。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0170"
+          ],
+          "doors": [
+            "emotion"
+          ],
+          "n_fired": 1,
+          "n_hit": 0,
+          "coverage": 0,
+          "recall_item": 0.0,
+          "precision": 0.0,
+          "rr": 0.0,
+          "stderr": ""
+        },
+        {
+          "id": "g004",
+          "prompt": "先生がKに黙って奥さんの母親に結婚を申し込んだのはなぜか。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0491",
+            "kokoro-p0514",
+            "kokoro-p0550"
+          ],
+          "doors": [
+            "convergence",
+            "convergence",
+            "convergence"
+          ],
+          "n_fired": 3,
+          "n_hit": 0,
+          "coverage": 0,
+          "recall_item": 0.0,
+          "precision": 0.0,
+          "rr": 0.0,
+          "stderr": ""
+        },
+        {
+          "id": "g005",
+          "prompt": "Kが口癖のように用いた、自己の弱さを戒める言葉はどのような内容か。",
+          "n_relevant": 4,
+          "fired": [],
+          "doors": [],
+          "n_fired": 0,
+          "n_hit": 0,
+          "coverage": 0,
+          "recall_item": 0.0,
+          "precision": null,
+          "rr": 0.0,
+          "stderr": ""
+        },
+        {
+          "id": "g006",
+          "prompt": "先生はKの死を発見した時、彼のそばにどのようなものが残されていたか。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0170",
+            "kokoro-p0653",
+            "kokoro-p0659"
+          ],
+          "doors": [
+            "emotion",
+            "convergence",
+            "convergence"
+          ],
+          "n_fired": 3,
+          "n_hit": 1,
+          "coverage": 1,
+          "recall_item": 0.25,
+          "precision": 0.3333333333333333,
+          "rr": 0.5,
+          "stderr": ""
+        },
+        {
+          "id": "g007",
+          "prompt": "KがKなりの「道」を歩もうとしていたとは、具体的にどのような生き方を目指していたか。",
+          "n_relevant": 4,
+          "fired": [],
+          "doors": [],
+          "n_fired": 0,
+          "n_hit": 0,
+          "coverage": 0,
+          "recall_item": 0.0,
+          "precision": null,
+          "rr": 0.0,
+          "stderr": ""
+        },
+        {
+          "id": "g008",
+          "prompt": "先生の叔父はどのようにして先生の財産を奪ったか。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0436",
+            "kokoro-p0421",
+            "kokoro-p0200"
+          ],
+          "doors": [
+            "emotion",
+            "emotion",
+            "convergence"
+          ],
+          "n_fired": 3,
+          "n_hit": 0,
+          "coverage": 0,
+          "recall_item": 0.0,
+          "precision": 0.0,
+          "rr": 0.0,
+          "stderr": ""
+        },
+        {
+          "id": "g009",
+          "prompt": "先生が人間全般を信用できなくなった直接のきっかけは何か。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0170"
+          ],
+          "doors": [
+            "emotion"
+          ],
+          "n_fired": 1,
+          "n_hit": 0,
+          "coverage": 0,
+          "recall_item": 0.0,
+          "precision": 0.0,
+          "rr": 0.0,
+          "stderr": ""
+        },
+        {
+          "id": "g010",
+          "prompt": "先生が大学在学中に下宿を決めた家には、どのような家族が住んでいたか。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0267",
+            "kokoro-p0170"
+          ],
+          "doors": [
+            "emotion",
+            "emotion"
+          ],
+          "n_fired": 2,
+          "n_hit": 0,
+          "coverage": 0,
+          "recall_item": 0.0,
+          "precision": 0.0,
+          "rr": 0.0,
+          "stderr": ""
+        },
+        {
+          "id": "g011",
+          "prompt": "先生がKを同じ下宿に呼び寄せた時、先生の心中にはどのような動機があったか。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0507",
+            "kokoro-p0544",
+            "kokoro-p0170"
+          ],
+          "doors": [
+            "convergence",
+            "convergence",
+            "emotion"
+          ],
+          "n_fired": 3,
+          "n_hit": 1,
+          "coverage": 1,
+          "recall_item": 0.25,
+          "precision": 0.3333333333333333,
+          "rr": 0.5,
+          "stderr": ""
+        },
+        {
+          "id": "g012",
+          "prompt": "明治天皇が崩御した際、先生はどのような感慨を「私」に対して示したか。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0020",
+            "kokoro-p0051",
+            "kokoro-p0067"
+          ],
+          "doors": [
+            "convergence",
+            "convergence",
+            "convergence"
+          ],
+          "n_fired": 3,
+          "n_hit": 0,
+          "coverage": 0,
+          "recall_item": 0.0,
+          "precision": 0.0,
+          "rr": 0.0,
+          "stderr": ""
+        },
+        {
+          "id": "g013",
+          "prompt": "乃木大将の殉死の知らせは、先生の決意にどのような影響を与えたか。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0170",
+            "kokoro-p0701"
+          ],
+          "doors": [
+            "emotion",
+            "convergence"
+          ],
+          "n_fired": 2,
+          "n_hit": 1,
+          "coverage": 1,
+          "recall_item": 0.25,
+          "precision": 0.5,
+          "rr": 1.0,
+          "stderr": ""
+        },
+        {
+          "id": "g014",
+          "prompt": "先生が「私」に宛てた長い手紙は、「私」がどこにいる時に届いたか。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0514",
+            "kokoro-p0020",
+            "kokoro-p0051"
+          ],
+          "doors": [
+            "convergence",
+            "convergence",
+            "convergence"
+          ],
+          "n_fired": 3,
+          "n_hit": 0,
+          "coverage": 0,
+          "recall_item": 0.0,
+          "precision": 0.0,
+          "rr": 0.0,
+          "stderr": ""
+        },
+        {
+          "id": "g015",
+          "prompt": "「私」が先生の遺書を受け取った後にとった行動は何か。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0020",
+            "kokoro-p0051",
+            "kokoro-p0067"
+          ],
+          "doors": [
+            "convergence",
+            "convergence",
+            "convergence"
+          ],
+          "n_fired": 3,
+          "n_hit": 0,
+          "coverage": 0,
+          "recall_item": 0.0,
+          "precision": 0.0,
+          "rr": 0.0,
+          "stderr": ""
+        },
+        {
+          "id": "g016",
+          "prompt": "先生の妻は夫の過去——Kの死に自分が絡んでいること——を知っていたか。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0170",
+            "kokoro-p0653",
+            "kokoro-p0659"
+          ],
+          "doors": [
+            "emotion",
+            "convergence",
+            "convergence"
+          ],
+          "n_fired": 3,
+          "n_hit": 0,
+          "coverage": 0,
+          "recall_item": 0.0,
+          "precision": 0.0,
+          "rr": 0.0,
+          "stderr": ""
+        },
+        {
+          "id": "g017",
+          "prompt": "先生が生前に「私」にだけ自分の過去を打ち明けようとした理由は何か。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0020",
+            "kokoro-p0051",
+            "kokoro-p0067"
+          ],
+          "doors": [
+            "convergence",
+            "convergence",
+            "convergence"
+          ],
+          "n_fired": 3,
+          "n_hit": 0,
+          "coverage": 0,
+          "recall_item": 0.0,
+          "precision": 0.0,
+          "rr": 0.0,
+          "stderr": ""
+        },
+        {
+          "id": "g018",
+          "prompt": "「私」の父が患っていた病気は何で、その経過はどのようなものだったか。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0561",
+            "kokoro-p0145",
+            "kokoro-p0151"
+          ],
+          "doors": [
+            "convergence",
+            "convergence",
+            "convergence"
+          ],
+          "n_fired": 3,
+          "n_hit": 0,
+          "coverage": 0,
+          "recall_item": 0.0,
+          "precision": 0.0,
+          "rr": 0.0,
+          "stderr": ""
+        },
+        {
+          "id": "g019",
+          "prompt": "「私」の父は先生の死の知らせを受け取ったか。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0020",
+            "kokoro-p0103",
+            "kokoro-p0051"
+          ],
+          "doors": [
+            "convergence",
+            "convergence",
+            "convergence"
+          ],
+          "n_fired": 3,
+          "n_hit": 0,
+          "coverage": 0,
+          "recall_item": 0.0,
+          "precision": 0.0,
+          "rr": 0.0,
+          "stderr": ""
+        },
+        {
+          "id": "g020",
+          "prompt": "「私」の母は息子が東京の大学を卒業した後、どうしてほしいと望んでいたか。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0267",
+            "kokoro-p0021",
+            "kokoro-p0164"
+          ],
+          "doors": [
+            "emotion",
+            "convergence",
+            "convergence"
+          ],
+          "n_fired": 3,
+          "n_hit": 0,
+          "coverage": 0,
+          "recall_item": 0.0,
+          "precision": 0.0,
+          "rr": 0.0,
+          "stderr": ""
+        },
+        {
+          "id": "g021",
+          "prompt": "先生とお嬢さんが結婚したことをKが知った時、Kはどのような反応を見せたか。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0491",
+            "kokoro-p0550",
+            "kokoro-p0554"
+          ],
+          "doors": [
+            "convergence",
+            "convergence",
+            "convergence"
+          ],
+          "n_fired": 3,
+          "n_hit": 0,
+          "coverage": 0,
+          "recall_item": 0.0,
+          "precision": 0.0,
+          "rr": 0.0,
+          "stderr": ""
+        },
+        {
+          "id": "g022",
+          "prompt": "先生が感じ続けた「罪」の核心は何か。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0082",
+            "kokoro-p0102",
+            "kokoro-p0170"
+          ],
+          "doors": [
+            "convergence",
+            "convergence",
+            "emotion"
+          ],
+          "n_fired": 3,
+          "n_hit": 0,
+          "coverage": 0,
+          "recall_item": 0.0,
+          "precision": 0.0,
+          "rr": 0.0,
+          "stderr": ""
+        },
+        {
+          "id": "g023",
+          "prompt": "先生が社会に出て働かず、孤独に暮らしていた表向きの理由として周囲にはどう映っていたか。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0170"
+          ],
+          "doors": [
+            "emotion"
+          ],
+          "n_fired": 1,
+          "n_hit": 0,
+          "coverage": 0,
+          "recall_item": 0.0,
+          "precision": 0.0,
+          "rr": 0.0,
+          "stderr": ""
+        },
+        {
+          "id": "g024",
+          "prompt": "KとKが慕うお嬢さんとの間で、Kは自分の「道」とどちらを優先すべきか葛藤したか。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0550",
+            "kokoro-p0554",
+            "kokoro-p0591"
+          ],
+          "doors": [
+            "convergence",
+            "convergence",
+            "convergence"
+          ],
+          "n_fired": 3,
+          "n_hit": 0,
+          "coverage": 0,
+          "recall_item": 0.0,
+          "precision": 0.0,
+          "rr": 0.0,
+          "stderr": ""
+        },
+        {
+          "id": "g025",
+          "prompt": "先生が「私」に初めて自宅を訪ねさせた時、先生の妻はどのような人物として描かれているか。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0020",
+            "kokoro-p0051",
+            "kokoro-p0067"
+          ],
+          "doors": [
+            "convergence",
+            "convergence",
+            "convergence"
+          ],
+          "n_fired": 3,
+          "n_hit": 0,
+          "coverage": 0,
+          "recall_item": 0.0,
+          "precision": 0.0,
+          "rr": 0.0,
+          "stderr": ""
+        },
+        {
+          "id": "g026",
+          "prompt": "先生が親しい友人の死をきっかけに「自分も死ぬべきだった」と感じていたのはなぜか。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0170"
+          ],
+          "doors": [
+            "emotion"
+          ],
+          "n_fired": 1,
+          "n_hit": 0,
+          "coverage": 0,
+          "recall_item": 0.0,
+          "precision": 0.0,
+          "rr": 0.0,
+          "stderr": ""
+        },
+        {
+          "id": "g027",
+          "prompt": "「私」が鎌倉で先生と初めて言葉を交わすきっかけとなった状況は何か。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0020",
+            "kokoro-p0051",
+            "kokoro-p0067"
+          ],
+          "doors": [
+            "convergence",
+            "convergence",
+            "convergence"
+          ],
+          "n_fired": 3,
+          "n_hit": 0,
+          "coverage": 0,
+          "recall_item": 0.0,
+          "precision": 0.0,
+          "rr": 0.0,
+          "stderr": ""
+        },
+        {
+          "id": "g028",
+          "prompt": "先生の遺書の中で、先生はKの自殺の直接的な原因をどのように解釈していたか。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0170",
+            "kokoro-p0653",
+            "kokoro-p0657"
+          ],
+          "doors": [
+            "emotion",
+            "convergence",
+            "convergence"
+          ],
+          "n_fired": 3,
+          "n_hit": 3,
+          "coverage": 1,
+          "recall_item": 0.75,
+          "precision": 1.0,
+          "rr": 1.0,
+          "stderr": ""
+        },
+        {
+          "id": "g029",
+          "prompt": "先生が「私」との関係を通じて唯一得ようとしていたものは何か。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0020",
+            "kokoro-p0051",
+            "kokoro-p0067"
+          ],
+          "doors": [
+            "convergence",
+            "convergence",
+            "convergence"
+          ],
+          "n_fired": 3,
+          "n_hit": 0,
+          "coverage": 0,
+          "recall_item": 0.0,
+          "precision": 0.0,
+          "rr": 0.0,
+          "stderr": ""
+        },
+        {
+          "id": "g030",
+          "prompt": "先生の遺書が完成し送り出された時、先生はその後どうしたか。",
+          "n_relevant": 4,
+          "fired": [
+            "kokoro-p0170"
+          ],
+          "doors": [
+            "emotion"
+          ],
+          "n_fired": 1,
+          "n_hit": 1,
+          "coverage": 1,
+          "recall_item": 0.25,
+          "precision": 1.0,
+          "rr": 1.0,
+          "stderr": ""
+        }
+      ]
+    }
+  }
+}

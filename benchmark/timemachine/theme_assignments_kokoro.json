@@ -1,0 +1,85 @@
+{
+  "meta": {
+    "created_by": "manual (Claude acting as extraction-LLM stand-in; no external LLM call)",
+    "date": "2026-07-02",
+    "purpose": "Hand-tagged theme keywords (axis='theme') for the kokoro flashback A/B theme experiment. target = correct-answer episodes for goldset_abstract.jsonl. dummy = ~30 unrelated episodes tagged with plausible (but different) themes, to probe false-firing/noise once the DB is fully theme-tagged.",
+    "note": "Assignment done by reading each episode's summary/inner text directly, exactly as an ingest-time extraction LLM would. Synonym lists were hand-picked to cover common inflections AND, for the target set, deliberately checked against the exact wording of the paired goldset_abstract prompt (see README caveat in the final report: this makes the target set an optimistic upper bound on what a real extraction LLM would produce blind, at ingest time, without foreknowledge of future questions)."
+  },
+  "target": {
+    "kokoro-p0613": {"goldset_qids": ["a01"], "themes": [{"kw": "正しさ", "synonyms": ["正しい", "正義", "正しかった"]}, {"kw": "優しさ", "synonyms": ["優しい", "思いやり", "情け"]}]},
+    "kokoro-p0615": {"goldset_qids": ["a01"], "themes": [{"kw": "正しさ", "synonyms": ["正しい", "正義", "正しかった"]}, {"kw": "優しさ", "synonyms": ["優しい", "思いやり", "情け"]}]},
+    "kokoro-p0619": {"goldset_qids": ["a01"], "themes": [{"kw": "正しさ", "synonyms": ["正しい", "正義", "正しかった"]}, {"kw": "優しさ", "synonyms": ["優しい", "思いやり", "情け"]}]},
+    "kokoro-p0620": {"goldset_qids": ["a01"], "themes": [{"kw": "正しさ", "synonyms": ["正しい", "正義", "正しかった"]}, {"kw": "優しさ", "synonyms": ["優しい", "思いやり", "情け"]}]},
+
+    "kokoro-p0634": {"goldset_qids": ["a02"], "themes": [{"kw": "裏切り", "synonyms": ["裏切る", "裏切った", "背く", "背いた"]}]},
+    "kokoro-p0635": {"goldset_qids": ["a02"], "themes": [{"kw": "裏切り", "synonyms": ["裏切る", "裏切った", "背く", "背いた"]}]},
+    "kokoro-p0642": {"goldset_qids": ["a02"], "themes": [{"kw": "裏切り", "synonyms": ["裏切る", "裏切った", "背く", "背いた"]}, {"kw": "後悔", "synonyms": ["悔やむ", "悔しい", "悔いる"]}]},
+    "kokoro-p0647": {"goldset_qids": ["a02"], "themes": [{"kw": "裏切り", "synonyms": ["裏切る", "裏切った", "背く", "背いた"]}, {"kw": "正しさ", "synonyms": ["正しい", "正義", "正しかった"]}]},
+
+    "kokoro-p0198": {"goldset_qids": ["a03"], "themes": [{"kw": "悪人", "synonyms": ["悪くなる", "人が変わる", "人を変える", "本性が出る", "悪い人"]}]},
+    "kokoro-p0203": {"goldset_qids": ["a03"], "themes": [{"kw": "悪人", "synonyms": ["悪くなる", "人が変わる", "人を変える", "本性が出る", "悪い人"]}]},
+    "kokoro-p0448": {"goldset_qids": ["a03", "a08"], "themes": [{"kw": "悪人", "synonyms": ["悪くなる", "人が変わる", "人を変える", "本性が出る", "悪い人"]}, {"kw": "不信", "synonyms": ["信じられない", "裏切られる", "裏切られた", "疑う"]}]},
+    "kokoro-p0449": {"goldset_qids": ["a03", "a08"], "themes": [{"kw": "悪人", "synonyms": ["悪くなる", "人が変わる", "人を変える", "本性が出る", "悪い人"]}, {"kw": "不信", "synonyms": ["信じられない", "裏切られる", "裏切られた", "疑う"]}]},
+
+    "kokoro-p0036": {"goldset_qids": ["a04"], "themes": [{"kw": "後悔", "synonyms": ["悔やむ", "悔しい", "悔いる"]}]},
+    "kokoro-p0103": {"goldset_qids": ["a04"], "themes": [{"kw": "後悔", "synonyms": ["悔やむ", "悔しい", "悔いる"]}]},
+    "kokoro-p0096": {"goldset_qids": ["a04"], "themes": [{"kw": "後悔", "synonyms": ["悔やむ", "悔しい", "悔いる"]}]},
+    "kokoro-p0692": {"goldset_qids": ["a04"], "themes": [{"kw": "後悔", "synonyms": ["悔やむ", "悔しい", "悔いる"]}]},
+    "kokoro-p0693": {"goldset_qids": ["a04"], "themes": [{"kw": "後悔", "synonyms": ["悔やむ", "悔しい", "悔いる"]}]},
+
+    "kokoro-p0480": {"goldset_qids": ["a05"], "themes": [{"kw": "初恋", "synonyms": ["恋に落ちる", "好きになる", "恋心"]}]},
+    "kokoro-p0481": {"goldset_qids": ["a05"], "themes": [{"kw": "初恋", "synonyms": ["恋に落ちる", "好きになる", "恋心"]}]},
+    "kokoro-p0462": {"goldset_qids": ["a05"], "themes": [{"kw": "初恋", "synonyms": ["恋に落ちる", "好きになる", "恋心"]}]},
+
+    "kokoro-p0653": {"goldset_qids": ["a06"], "themes": [{"kw": "喪失", "synonyms": ["死別", "亡くす", "亡くした", "失う"]}]},
+    "kokoro-p0654": {"goldset_qids": ["a06"], "themes": [{"kw": "喪失", "synonyms": ["死別", "亡くす", "亡くした", "失う"]}]},
+    "kokoro-p0655": {"goldset_qids": ["a06"], "themes": [{"kw": "喪失", "synonyms": ["死別", "亡くす", "亡くした", "失う"]}]},
+    "kokoro-p0666": {"goldset_qids": ["a06"], "themes": [{"kw": "喪失", "synonyms": ["死別", "亡くす", "亡くした", "失う"]}]},
+
+    "kokoro-p0587": {"goldset_qids": ["a07"], "themes": [{"kw": "嫉妬", "synonyms": ["妬む", "羨む", "焼きもち"]}]},
+    "kokoro-p0588": {"goldset_qids": ["a07"], "themes": [{"kw": "嫉妬", "synonyms": ["妬む", "羨む", "焼きもち"]}]},
+
+    "kokoro-p0439": {"goldset_qids": ["a08"], "themes": [{"kw": "不信", "synonyms": ["信じられない", "裏切られる", "裏切られた", "疑う"]}]},
+    "kokoro-p0443": {"goldset_qids": ["a08"], "themes": [{"kw": "不信", "synonyms": ["信じられない", "裏切られる", "裏切られた", "疑う"]}]},
+
+    "kokoro-p0043": {"goldset_qids": ["a09"], "themes": [{"kw": "孤独", "synonyms": ["淋しい", "寂しい", "一人", "独り"]}]},
+    "kokoro-p0046": {"goldset_qids": ["a09"], "themes": [{"kw": "孤独", "synonyms": ["淋しい", "寂しい", "一人", "独り"]}]},
+    "kokoro-p0047": {"goldset_qids": ["a09"], "themes": [{"kw": "孤独", "synonyms": ["淋しい", "寂しい", "一人", "独り"]}]},
+
+    "kokoro-p0679": {"goldset_qids": ["a10"], "themes": [{"kw": "偽り", "synonyms": ["偽る", "偽って", "隠して生きる"]}]},
+    "kokoro-p0694": {"goldset_qids": ["a10"], "themes": [{"kw": "偽り", "synonyms": ["偽る", "偽って", "隠して生きる"]}]},
+    "kokoro-p0698": {"goldset_qids": ["a10"], "themes": [{"kw": "偽り", "synonyms": ["偽る", "偽って", "隠して生きる"]}]}
+  },
+  "dummy": {
+    "kokoro-p0007": {"themes": [{"kw": "出会い", "synonyms": ["出会う", "知り合う"]}]},
+    "kokoro-p0026": {"themes": [{"kw": "予感", "synonyms": ["嫌な予感", "不安になる"]}]},
+    "kokoro-p0028": {"themes": [{"kw": "皮肉", "synonyms": ["アイロニー", "ひねくれ"]}]},
+    "kokoro-p0031": {"themes": [{"kw": "無目的", "synonyms": ["目的がない", "ぶらぶら"]}]},
+    "kokoro-p0033": {"themes": [{"kw": "友情", "synonyms": ["仲良くなる", "親しくなる"]}]},
+    "kokoro-p0094": {"themes": [{"kw": "自己不信", "synonyms": ["自分を信じられない", "自信がない"]}]},
+    "kokoro-p0101": {"themes": [{"kw": "告白", "synonyms": ["打ち明ける", "白状する"]}]},
+    "kokoro-p0111": {"themes": [{"kw": "図星", "synonyms": ["痛いところ", "核心を突く"]}]},
+    "kokoro-p0121": {"themes": [{"kw": "憧れ", "synonyms": ["憧憬", "恋愛未経験"]}]},
+    "kokoro-p0149": {"themes": [{"kw": "健康不安", "synonyms": ["病気が怖い", "体調"]}]},
+    "kokoro-p0170": {"themes": [{"kw": "人間の脆さ", "synonyms": ["脆い", "もろい", "不確か"]}]},
+    "kokoro-p0212": {"themes": [{"kw": "興奮", "synonyms": ["昂奮", "熱くなる"]}]},
+    "kokoro-p0232": {"themes": [{"kw": "もてなし", "synonyms": ["接客", "世話"]}]},
+    "kokoro-p0234": {"themes": [{"kw": "将来への不安", "synonyms": ["将来", "就職", "進路"]}]},
+    "kokoro-p0237": {"themes": [{"kw": "余裕", "synonyms": ["財産があるから", "気楽", "呑気"]}]},
+    "kokoro-p0247": {"themes": [{"kw": "健康不安", "synonyms": ["病気が怖い", "体調"]}]},
+    "kokoro-p0259": {"themes": [{"kw": "計画性", "synonyms": ["予定を立てる", "無為に過ごさない"]}]},
+    "kokoro-p0290": {"themes": [{"kw": "時代の終わり", "synonyms": ["天皇の病気", "時代の変化"]}]},
+    "kokoro-p0293": {"themes": [{"kw": "怠惰", "synonyms": ["だらける", "昼寝", "無気力"]}]},
+    "kokoro-p0438": {"themes": [{"kw": "楽観", "synonyms": ["甘く見る", "軽く考える"]}]},
+    "kokoro-p0442": {"themes": [{"kw": "運命の急変", "synonyms": ["一変する", "急変", "掌を返す"]}]},
+    "kokoro-p0473": {"themes": [{"kw": "打ち解け", "synonyms": ["馴染む", "接近する"]}]},
+    "kokoro-p0533": {"themes": [{"kw": "駆け引き", "synonyms": ["応用する", "策略"]}]},
+    "kokoro-p0574": {"themes": [{"kw": "侘しさ", "synonyms": ["寒々しい", "侘しい"]}]},
+    "kokoro-p0592": {"themes": [{"kw": "気まずさ", "synonyms": ["気まずい", "顔を合わせない"]}]},
+    "kokoro-p0625": {"themes": [{"kw": "接近", "synonyms": ["机の傍に坐る", "話しかける"]}]},
+    "kokoro-p0626": {"themes": [{"kw": "予感", "synonyms": ["嫌な予感", "不安になる"]}]},
+    "kokoro-p0640": {"themes": [{"kw": "落ち着かなさ", "synonyms": ["そわそわ", "気が乗らない"]}]},
+    "kokoro-p0685": {"themes": [{"kw": "虚無感", "synonyms": ["何もする気がない", "空虚"]}]},
+    "kokoro-p0700": {"themes": [{"kw": "殉死", "synonyms": ["後を追う", "運命を共にする"]}]}
+  }
+}

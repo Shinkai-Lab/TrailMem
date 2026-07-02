@@ -1,0 +1,496 @@
+{
+  "meta": {
+    "purpose": "4-axis keyword construct, step 1: abstract THEME keyword axis. Measures whether hand-tagged theme keywords (axis='theme', with inflection/synonym coverage) let TrailMem's flashback gates (door1 emotion / door2 convergence / spread) fire on paraphrased abstract 'kokoro-bench Q4 style' questions (e.g. 正しいvs優しい) that the concrete-noun keyword mechanism could not reach.",
+    "config": "D' (DOOR2=1 hub-penalized, WEAKEST_FIRST=1, theta2=0.125, spread=1) -- same config validated in ab_flashback_results_v2.json",
+    "base_db": "kokoro_floor_on_sp.db (707 episodes, floor+spread grown, turn_seq=707)",
+    "llm_calls": 0,
+    "theme_tagging": "manual, by the executing Claude agent (acting as the ingest-time extraction LLM stand-in); no external LLM/API call was made. See theme_assignments_kokoro.json for the exact per-episode tags and add_themes_kokoro.py for the (reusable/idempotent) apply script.",
+    "scratch_dbs": {
+      "notheme": "kokoro_floor_on_sp_notheme.db (byte-identical copy of kokoro_floor_on_sp.db)",
+      "themed": "kokoro_floor_on_sp_themed.db (notheme copy + add_themes_kokoro.py applied: 10 goldset_abstract target clusters [25 episodes] + 30 unrelated dummy episodes)"
+    }
+  },
+  "i_before_abstract": {
+    "description": "(i) theme-less DB x goldset_abstract.jsonl (10 questions) -- baseline",
+    "D_prime": {
+      "n_cases": 10,
+      "total_fired": 2,
+      "avg_fired_per_prompt": 0.2,
+      "zero_fire_rate": 0.9,
+      "unique_fired_episodes": 2,
+      "coverage": 0.0,
+      "recall_item_avg": 0.0,
+      "precision_at_fired_avg": 0.0,
+      "precision_denominator_n": 1,
+      "MRR": 0.0,
+      "door_type_counts": {
+        "emotion": 0,
+        "convergence": 0,
+        "spread": 2
+      },
+      "n_errors": 0,
+      "elapsed_sec": 0.44
+    },
+    "all_configs": {
+      "A: DOOR2=0 WEAKEST=0 (旧挙動)": {
+        "n_cases": 10,
+        "total_fired": 2,
+        "avg_fired_per_prompt": 0.2,
+        "zero_fire_rate": 0.9,
+        "unique_fired_episodes": 2,
+        "coverage": 0.0,
+        "recall_item_avg": 0.0,
+        "precision_at_fired_avg": 0.0,
+        "precision_denominator_n": 1,
+        "MRR": 0.0,
+        "door_type_counts": {
+          "emotion": 0,
+          "convergence": 0,
+          "spread": 2
+        },
+        "n_errors": 0,
+        "elapsed_sec": 0.44
+      },
+      "B': DOOR2=1(hub,θ2=0.125) WEAKEST=0": {
+        "n_cases": 10,
+        "total_fired": 2,
+        "avg_fired_per_prompt": 0.2,
+        "zero_fire_rate": 0.9,
+        "unique_fired_episodes": 2,
+        "coverage": 0.0,
+        "recall_item_avg": 0.0,
+        "precision_at_fired_avg": 0.0,
+        "precision_denominator_n": 1,
+        "MRR": 0.0,
+        "door_type_counts": {
+          "emotion": 0,
+          "convergence": 0,
+          "spread": 2
+        },
+        "n_errors": 0,
+        "elapsed_sec": 0.54
+      },
+      "D': DOOR2=1(hub,θ2=0.125) WEAKEST=1(忘れられ度)": {
+        "n_cases": 10,
+        "total_fired": 2,
+        "avg_fired_per_prompt": 0.2,
+        "zero_fire_rate": 0.9,
+        "unique_fired_episodes": 2,
+        "coverage": 0.0,
+        "recall_item_avg": 0.0,
+        "precision_at_fired_avg": 0.0,
+        "precision_denominator_n": 1,
+        "MRR": 0.0,
+        "door_type_counts": {
+          "emotion": 0,
+          "convergence": 0,
+          "spread": 2
+        },
+        "n_errors": 0,
+        "elapsed_sec": 0.44
+      },
+      "E: DOOR2=1(hub,θ2=0.125) WEAKEST=1 spread=OFF": {
+        "n_cases": 10,
+        "total_fired": 0,
+        "avg_fired_per_prompt": 0.0,
+        "zero_fire_rate": 1.0,
+        "unique_fired_episodes": 0,
+        "coverage": 0.0,
+        "recall_item_avg": 0.0,
+        "precision_at_fired_avg": null,
+        "precision_denominator_n": 0,
+        "MRR": 0.0,
+        "door_type_counts": {
+          "emotion": 0,
+          "convergence": 0,
+          "spread": 0
+        },
+        "n_errors": 0,
+        "elapsed_sec": 0.42
+      }
+    }
+  },
+  "ii_after_abstract": {
+    "description": "(ii) themed DB x goldset_abstract.jsonl (10 questions) -- with themes",
+    "D_prime": {
+      "n_cases": 10,
+      "total_fired": 19,
+      "avg_fired_per_prompt": 1.9,
+      "zero_fire_rate": 0.1,
+      "unique_fired_episodes": 15,
+      "coverage": 0.4,
+      "recall_item_avg": 0.20833333333333334,
+      "precision_at_fired_avg": 0.3148148148148148,
+      "precision_denominator_n": 9,
+      "MRR": 0.4,
+      "door_type_counts": {
+        "emotion": 0,
+        "convergence": 5,
+        "spread": 14
+      },
+      "n_errors": 0,
+      "elapsed_sec": 1.86
+    },
+    "all_configs": {
+      "A: DOOR2=0 WEAKEST=0 (旧挙動)": {
+        "n_cases": 10,
+        "total_fired": 14,
+        "avg_fired_per_prompt": 1.4,
+        "zero_fire_rate": 0.2,
+        "unique_fired_episodes": 10,
+        "coverage": 0.1,
+        "recall_item_avg": 0.075,
+        "precision_at_fired_avg": 0.125,
+        "precision_denominator_n": 8,
+        "MRR": 0.1,
+        "door_type_counts": {
+          "emotion": 0,
+          "convergence": 0,
+          "spread": 14
+        },
+        "n_errors": 0,
+        "elapsed_sec": 1.16
+      },
+      "B': DOOR2=1(hub,θ2=0.125) WEAKEST=0": {
+        "n_cases": 10,
+        "total_fired": 19,
+        "avg_fired_per_prompt": 1.9,
+        "zero_fire_rate": 0.1,
+        "unique_fired_episodes": 15,
+        "coverage": 0.4,
+        "recall_item_avg": 0.20833333333333334,
+        "precision_at_fired_avg": 0.3148148148148148,
+        "precision_denominator_n": 9,
+        "MRR": 0.4,
+        "door_type_counts": {
+          "emotion": 0,
+          "convergence": 5,
+          "spread": 14
+        },
+        "n_errors": 0,
+        "elapsed_sec": 1.01
+      },
+      "D': DOOR2=1(hub,θ2=0.125) WEAKEST=1(忘れられ度)": {
+        "n_cases": 10,
+        "total_fired": 19,
+        "avg_fired_per_prompt": 1.9,
+        "zero_fire_rate": 0.1,
+        "unique_fired_episodes": 15,
+        "coverage": 0.4,
+        "recall_item_avg": 0.20833333333333334,
+        "precision_at_fired_avg": 0.3148148148148148,
+        "precision_denominator_n": 9,
+        "MRR": 0.4,
+        "door_type_counts": {
+          "emotion": 0,
+          "convergence": 5,
+          "spread": 14
+        },
+        "n_errors": 0,
+        "elapsed_sec": 1.86
+      },
+      "E: DOOR2=1(hub,θ2=0.125) WEAKEST=1 spread=OFF": {
+        "n_cases": 10,
+        "total_fired": 5,
+        "avg_fired_per_prompt": 0.5,
+        "zero_fire_rate": 0.7,
+        "unique_fired_episodes": 5,
+        "coverage": 0.3,
+        "recall_item_avg": 0.13333333333333333,
+        "precision_at_fired_avg": 1.0,
+        "precision_denominator_n": 3,
+        "MRR": 0.3,
+        "door_type_counts": {
+          "emotion": 0,
+          "convergence": 5,
+          "spread": 0
+        },
+        "n_errors": 0,
+        "elapsed_sec": 0.57
+      }
+    }
+  },
+  "abstract_delta_i_to_ii": {
+    "avg_fired_per_prompt": 1.7,
+    "coverage": 0.4,
+    "recall_item_avg": 0.2083,
+    "MRR": 0.4
+  },
+  "iii_regression_check": {
+    "description": "(iii) themed DB (target+dummy) x existing goldset.jsonl (30 questions) -- did adding themes (10 target clusters + 30 dummy episodes) hurt the pre-existing keyword-based recall?",
+    "D_prime_themed": {
+      "n_cases": 30,
+      "total_fired": 68,
+      "avg_fired_per_prompt": 2.2666666666666666,
+      "zero_fire_rate": 0.06666666666666667,
+      "unique_fired_episodes": 44,
+      "coverage": 0.3,
+      "recall_item_avg": 0.125,
+      "precision_at_fired_avg": 0.20238095238095236,
+      "precision_denominator_n": 28,
+      "MRR": 0.24444444444444444,
+      "door_type_counts": {
+        "emotion": 9,
+        "convergence": 59,
+        "spread": 0
+      },
+      "n_errors": 0,
+      "elapsed_sec": 3.57
+    },
+    "D_prime_v2_original_baseline": {
+      "n_cases": 30,
+      "total_fired": 66,
+      "avg_fired_per_prompt": 2.2,
+      "zero_fire_rate": 0.06666666666666667,
+      "unique_fired_episodes": 41,
+      "coverage": 0.3333333333333333,
+      "recall_item_avg": 0.13333333333333333,
+      "precision_at_fired_avg": 0.21428571428571427,
+      "precision_denominator_n": 28,
+      "MRR": 0.2555555555555556,
+      "door_type_counts": {
+        "emotion": 11,
+        "convergence": 55,
+        "spread": 0
+      },
+      "n_errors": 0,
+      "elapsed_sec": 3.11
+    },
+    "delta_vs_v2_baseline": {
+      "avg_fired_per_prompt": 0.0667,
+      "coverage": -0.0333,
+      "recall_item_avg": -0.0083,
+      "precision_at_fired_avg": -0.0119,
+      "MRR": -0.0111
+    },
+    "regression_examples": [
+      {
+        "case_id": "g013",
+        "prompt": "乃木大将の殉死の知らせは、先生の決意にどのような影響を与えたか。",
+        "relevant": [
+          "kokoro-p0170",
+          "kokoro-p0703",
+          "kokoro-p0071",
+          "kokoro-p0163"
+        ],
+        "fired_before_themes": [
+          "kokoro-p0701",
+          "kokoro-p0359",
+          "kokoro-p0170"
+        ],
+        "fired_after_themes": [
+          "kokoro-p0700",
+          "kokoro-p0701",
+          "kokoro-p0359"
+        ],
+        "explanation": "kokoro-p0700 was tagged (as an UNRELATED dummy) with theme kw='殉死' because its own text literally says '私は殉死という言葉をほとんど忘れていました'. g013's prompt also contains '殉死' verbatim. The fresh, undecayed theme link (effective_strength=0.5) outcompeted the correct-but-decayed kokoro-p0170 for the 3rd of TRAILMEM_MAX_FLASHBACKS=3 slots, flipping this single case's coverage from 1 to 0."
+      }
+    ]
+  },
+  "goldset_abstract_per_case_after": [
+    {
+      "id": "a01",
+      "prompt": "正しいことと優しいこと、どっちを選ぶべきなんだろうね",
+      "n_relevant": 4,
+      "fired": [
+        "kokoro-p0620",
+        "kokoro-p0619",
+        "kokoro-p0615"
+      ],
+      "doors": [
+        "convergence",
+        "convergence",
+        "convergence"
+      ],
+      "n_hit": 3
+    },
+    {
+      "id": "a02",
+      "prompt": "人を裏切ったことある？",
+      "n_relevant": 4,
+      "fired": [
+        "kokoro-p0642",
+        "kokoro-p0634",
+        "kokoro-p0635"
+      ],
+      "doors": [
+        "spread",
+        "spread",
+        "spread"
+      ],
+      "n_hit": 3
+    },
+    {
+      "id": "a03",
+      "prompt": "お金って人を変えると思う？",
+      "n_relevant": 4,
+      "fired": [
+        "kokoro-p0448",
+        "kokoro-p0148"
+      ],
+      "doors": [
+        "convergence",
+        "spread"
+      ],
+      "n_hit": 1
+    },
+    {
+      "id": "a04",
+      "prompt": "ずっと後悔してることってある？",
+      "n_relevant": 5,
+      "fired": [
+        "kokoro-p0170"
+      ],
+      "doors": [
+        "spread"
+      ],
+      "n_hit": 0
+    },
+    {
+      "id": "a05",
+      "prompt": "初恋の思い出ってどんな感じだった？",
+      "n_relevant": 3,
+      "fired": [
+        "kokoro-p0481",
+        "kokoro-p0487",
+        "kokoro-p0051"
+      ],
+      "doors": [
+        "convergence",
+        "spread",
+        "spread"
+      ],
+      "n_hit": 1
+    },
+    {
+      "id": "a06",
+      "prompt": "大切な人を亡くした経験ってある？",
+      "n_relevant": 4,
+      "fired": [],
+      "doors": [],
+      "n_hit": 0
+    },
+    {
+      "id": "a07",
+      "prompt": "誰かに嫉妬したことある？",
+      "n_relevant": 2,
+      "fired": [
+        "kokoro-p0487",
+        "kokoro-p0051"
+      ],
+      "doors": [
+        "spread",
+        "spread"
+      ],
+      "n_hit": 0
+    },
+    {
+      "id": "a08",
+      "prompt": "信頼してた人に裏切られたことってある？",
+      "n_relevant": 4,
+      "fired": [
+        "kokoro-p0294",
+        "kokoro-p0148"
+      ],
+      "doors": [
+        "spread",
+        "spread"
+      ],
+      "n_hit": 0
+    },
+    {
+      "id": "a09",
+      "prompt": "ふと孤独を感じる瞬間ってある？",
+      "n_relevant": 3,
+      "fired": [
+        "kokoro-p0168"
+      ],
+      "doors": [
+        "spread"
+      ],
+      "n_hit": 0
+    },
+    {
+      "id": "a10",
+      "prompt": "自分を偽って生きてるって感じることある？",
+      "n_relevant": 3,
+      "fired": [
+        "kokoro-p0177",
+        "kokoro-p0168"
+      ],
+      "doors": [
+        "spread",
+        "spread"
+      ],
+      "n_hit": 0
+    }
+  ],
+  "goldset_abstract_per_case_before": [
+    {
+      "id": "a01",
+      "prompt": "正しいことと優しいこと、どっちを選ぶべきなんだろうね",
+      "fired": [],
+      "doors": []
+    },
+    {
+      "id": "a02",
+      "prompt": "人を裏切ったことある？",
+      "fired": [],
+      "doors": []
+    },
+    {
+      "id": "a03",
+      "prompt": "お金って人を変えると思う？",
+      "fired": [],
+      "doors": []
+    },
+    {
+      "id": "a04",
+      "prompt": "ずっと後悔してることってある？",
+      "fired": [],
+      "doors": []
+    },
+    {
+      "id": "a05",
+      "prompt": "初恋の思い出ってどんな感じだった？",
+      "fired": [],
+      "doors": []
+    },
+    {
+      "id": "a06",
+      "prompt": "大切な人を亡くした経験ってある？",
+      "fired": [],
+      "doors": []
+    },
+    {
+      "id": "a07",
+      "prompt": "誰かに嫉妬したことある？",
+      "fired": [
+        "kokoro-p0487",
+        "kokoro-p0051"
+      ],
+      "doors": [
+        "spread",
+        "spread"
+      ]
+    },
+    {
+      "id": "a08",
+      "prompt": "信頼してた人に裏切られたことってある？",
+      "fired": [],
+      "doors": []
+    },
+    {
+      "id": "a09",
+      "prompt": "ふと孤独を感じる瞬間ってある？",
+      "fired": [],
+      "doors": []
+    },
+    {
+      "id": "a10",
+      "prompt": "自分を偽って生きてるって感じることある？",
+      "fired": [],
+      "doors": []
+    }
+  ]
+}
