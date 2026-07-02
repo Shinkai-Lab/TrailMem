@@ -204,7 +204,9 @@ There are two ways to use TrailMem. Both read and write the same underlying SQLi
 A daemon that watches wherever your conversation logs land (like `~/.claude/projects/**/*.jsonl`) and encodes episodes automatically in the background. Since it doesn't depend on any Claude Code-specific hook, it works as-is with Cursor, Cline, Codex, or anything else that writes conversation logs in jsonl.
 
 ```bash
-cd trailmem/daemon
+cd trailmem
+pip install -r daemon/requirements.txt  # 依存導入
+# 起動はリポジトリルートから(daemon/内からは失敗します)
 pip install -r requirements.txt
 
 python -m daemon.cli start      # asks for opt-in confirmation the first time

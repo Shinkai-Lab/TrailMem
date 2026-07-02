@@ -213,7 +213,9 @@ TrailMemの使い方は2通りあります。どちらも中身は同じSQLite D
 `~/.claude/projects/**/*.jsonl` のような会話ログの出力先を監視し、バックグラウンドで自動的にエピソードを記銘するデーモンです。Claude Code固有のフックに依存しないため、Cursor・Cline・Codexなど、jsonl形式の会話ログを吐くツールならそのまま使えます。
 
 ```bash
-cd trailmem/daemon
+cd trailmem
+pip install -r daemon/requirements.txt  # 依存導入
+# 起動はリポジトリルートから(daemon/内からは失敗します)
 pip install -r requirements.txt
 
 python -m daemon.cli start      # 初回はオプトイン確認あり
