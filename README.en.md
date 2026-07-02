@@ -16,11 +16,12 @@ it's an index of **trails to memory**. Episodes (summaries of what happened) are
 immutable; only the *access paths* to them strengthen or fade with use, like
 footpaths through grass. Forgetting is a path dying, not data being deleted.
 
-The design goal is **quietness**. Many memory tools are built to recall as much as possible every turn — a valid design for many uses. TrailMem explores the opposite trade-off; it injects a
-pile of retrieved fragments on every single turn. TrailMem instead recalls
-almost nothing most of the time, and lets a memory *flash back* only when it's
-actually relevant — in a same-scenario comparison, TrailMem injected **1,839
-characters** where an always-inject approach produced **34,737** in our same-scenario benchmark (roughly **19x** — details in `benchmark/`). Recall itself is fully
+The design goal is **quietness**. Many memory tools are built to recall as
+much relevant context as possible on every turn — a valid design for many
+uses. TrailMem explores the opposite trade-off: recall almost nothing most of
+the time, and let a memory *flash back* only when it's actually relevant. In
+our same-scenario benchmark the injection volume differed by roughly **19x**
+(details in `benchmark/`). Recall itself is fully
 LLM-free (pure SQLite, ~0.1s/turn); an LLM is only involved at write-time
 (episode creation), through a pluggable adapter (`claude -p`, Anthropic API, or
 any OpenAI-compatible endpoint). Raw conversation logs are always preserved
@@ -62,9 +63,9 @@ A trail forms in a meadow because someone keeps walking the same line. A trail n
 
 ### Quietness as a design goal
 
-Many AI memory tools are designed to deliver as much relevant memory as possible on every turn — a perfectly valid design for many use cases. TrailMem started from exploring the opposite trade-off: constant injection can bury the AI's thinking in noise and spend tokens on context that isn't needed right now.
+Many AI memory tools are designed to deliver as much relevant memory as possible on every turn — a perfectly valid design for many use cases. TrailMem started from exploring a different trade-off: recall almost nothing by default, and let a memory surface only when it's actually needed.
 
-TrailMem aims for the opposite. **How quiet can it stay, and how naturally can it flash back only when it actually matters.** In an actual comparison benchmark (a 5-question comparison using Natsume Sōseki's *Kokoro*, run on 2026-06-22, with Mem0 as a representative of the always-inject approach), the injection volume differed by roughly 19x under the same conditions (TrailMem: 1,839 characters — details in `benchmark/`). On most turns, TrailMem says nothing at all.
+TrailMem aims for quietness. **How quiet can it stay, and how naturally can it flash back only when it actually matters.** In an actual comparison benchmark (a 5-question comparison using Natsume Sōseki's *Kokoro*, run on 2026-06-22, with Mem0 as a representative of the always-inject approach), the injection volume differed by roughly 19x under the same conditions (TrailMem: 1,839 characters — details in `benchmark/`). On most turns, TrailMem says nothing at all.
 
 ### Traceability back to the raw log
 
