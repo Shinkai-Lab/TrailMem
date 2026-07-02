@@ -344,8 +344,21 @@ html, body { background: var(--bg); color: var(--text); font: 13px/1.5 'Inter', 
 
 #legend-wrap { display: flex; gap: 10px; align-items: center; font-size: 0.7em; color: var(--dim); }
 #legend-wrap .sw { width: 9px; height: 9px; border-radius: 50%; display: inline-block; margin-right: 4px; vertical-align: -1px; }
+#legend-title { cursor: pointer; user-select: none; font-weight: 600; }
+#legend-wrap.collapsed .legend-item { display: none; }
 
 #label-toggle { display: flex; align-items: center; gap: 5px; font-size: 0.72em; color: var(--dim); white-space: nowrap; }
+
+#lang-toggle {
+  position: fixed; top: 10px; right: 16px; z-index: 15;
+  display: flex; gap: 2px; background: rgba(13,18,25,0.85); border: 1px solid var(--border);
+  border-radius: 8px; padding: 3px;
+}
+#lang-toggle button {
+  background: none; border: none; color: var(--dim); font-size: 0.72em; font-weight: 700;
+  padding: 4px 10px; border-radius: 6px; cursor: pointer;
+}
+#lang-toggle button.active { background: var(--accent); color: #05070a; }
 
 #side-panel {
   position: fixed; top: 0; right: -420px; width: 400px; height: 100%;
@@ -397,13 +410,13 @@ html, body { background: var(--bg); color: var(--text); font: 13px/1.5 'Inter', 
 <div id="label-layer"></div>
 
 <div id="header">
-  <div id="title">TrailMem 記憶網ビュワー<small id="db-file-note">-</small></div>
+  <div id="title"><span id="title-text">TrailMem 記憶網ビュワー</span><small id="db-file-note">-</small></div>
 
   <div class="stat-chip"><div class="num" id="stat-episodes">-</div><div class="label">episodes</div></div>
   <div class="stat-chip"><div class="num" id="stat-keywords">-</div><div class="label">keywords</div></div>
   <div class="stat-chip"><div class="num" id="stat-links">-</div><div class="label">links</div></div>
   <div class="stat-chip"><div class="num" id="stat-edges">-</div><div class="label">edges</div></div>
-  <div class="stat-chip gold"><div class="num" id="stat-hof">-</div><div class="label">殿堂入り</div></div>
+  <div class="stat-chip gold"><div class="num" id="stat-hof">-</div><div class="label" id="stat-hof-label">殿堂入り</div></div>
 
   <div>
     <div id="band-bar">
@@ -419,12 +432,13 @@ html, body { background: var(--bg); color: var(--text); font: 13px/1.5 'Inter', 
   </div>
 
   <div id="legend-wrap">
-    <span><span class="sw" style="background:var(--gold)"></span>殿堂入りリンク保持</span>
-    <span id="legend-purple"><span class="sw" style="background:var(--purple)"></span>axis:theme</span>
-    <span><span class="sw" style="background:var(--accent)"></span>通常</span>
+    <span id="legend-title" onclick="document.getElementById('legend-wrap').classList.toggle('collapsed')">凡例</span>
+    <span class="legend-item"><span class="sw" style="background:var(--gold)"></span><span id="legend-hof-text">殿堂入りリンク保持</span></span>
+    <span class="legend-item" id="legend-purple"><span class="sw" style="background:var(--purple)"></span><span id="legend-theme-text">axis:theme</span></span>
+    <span class="legend-item"><span class="sw" style="background:var(--accent)"></span><span id="legend-normal-text">通常</span></span>
   </div>
 
-  <label id="label-toggle"><input type="checkbox" id="hub-label-checkbox" checked> ハブラベル常時表示</label>
+  <label id="label-toggle"><input type="checkbox" id="hub-label-checkbox" checked> <span id="hub-label-text">ハブラベル常時表示</span></label>
 
   <div id="search-wrap">
     <input id="search-box" type="text" placeholder="キーワードで検索…" autocomplete="off">
@@ -432,7 +446,12 @@ html, body { background: var(--bg); color: var(--text); font: 13px/1.5 'Inter', 
   </div>
 </div>
 
-<div id="footer-hint">ドラッグ=回転 / スクロール=ズーム / クリック=詳細 / 背景クリック=閉じる</div>
+<div id="lang-toggle">
+  <button type="button" id="lang-btn-ja" data-lang="ja">JA</button>
+  <button type="button" id="lang-btn-en" data-lang="en">EN</button>
+</div>
+
+<div id="footer-hint"><span id="footer-hint-text">ドラッグ=回転 / スクロール=ズーム / クリック=詳細 / 背景クリック=閉じる</span></div>
 
 <div id="side-panel">
   <div id="panel-inner">
@@ -440,7 +459,7 @@ html, body { background: var(--bg); color: var(--text); font: 13px/1.5 'Inter', 
     <div id="panel-title">-</div>
     <div id="panel-badges"></div>
     <div id="panel-hint">
-      強度の手動調整は:<br>
+      <span id="panel-hint-text">強度の手動調整は:</span><br>
       <code>bash trailmem-doctor.sh set-strength &lt;episode_id&gt; &lt;keyword&gt; &lt;value&gt;</code>
     </div>
     <div id="panel-episodes-title">紐づくエピソード (強度降順)</div>
@@ -464,16 +483,77 @@ html, body { background: var(--bg); color: var(--text); font: 13px/1.5 'Inter', 
   var NODES = DATA.nodes;
   var EDGES = DATA.edges;
 
-  // ---- ヘッダ統計を埋める ----
+  // ---- i18n (JA/EN) ----
+  var I18N = {
+    ja: {
+      pageTitle: 'TrailMem 記憶網ビュワー',
+      title: 'TrailMem 記憶網ビュワー',
+      statHof: '殿堂入り',
+      legendTitle: '凡例',
+      legendHof: '殿堂入りリンク保持',
+      legendTheme: 'axis:theme',
+      legendNormal: '通常',
+      hubLabelToggle: 'ハブラベル常時表示',
+      searchPlaceholder: 'キーワードで検索…',
+      footerHint: 'ドラッグ=回転 / スクロール=ズーム / クリック=詳細 / 背景クリック=閉じる',
+      panelClose: '閉じる',
+      panelHintPrefix: '強度の手動調整は:',
+      panelEpisodesTitle: '紐づくエピソード (強度降順)',
+      emptyNote: 'このキーワードに紐づくliveなエピソードはありません。',
+      badgeDegree: '次数',
+      badgeHof: '👑 殿堂入りリンク保持',
+      badgeTheme: 'axis: theme',
+      badgeNormal: '通常',
+      nodeHof: '👑殿堂入り',
+      edgePruned: '間引き',
+      matches: '件マッチ',
+      bandTotal: '合計',
+      axisNote: 'keywordsテーブルにaxis列がないため今回は未使用（全キーワードが通常/殿堂入り扱い）',
+      epHofTitle: '殿堂入り (R>='
+    },
+    en: {
+      pageTitle: 'TrailMem Memory Web Viewer',
+      title: 'TrailMem Memory Web Viewer',
+      statHof: 'Hall of Fame',
+      legendTitle: 'Legend',
+      legendHof: 'Holds hall-of-fame link',
+      legendTheme: 'axis:theme',
+      legendNormal: 'Normal',
+      hubLabelToggle: 'Always show hub labels',
+      searchPlaceholder: 'Search keywords…',
+      footerHint: 'Drag = rotate / Scroll = zoom / Click = details / Click background = close',
+      panelClose: 'Close',
+      panelHintPrefix: 'To manually adjust strength:',
+      panelEpisodesTitle: 'Linked episodes (by strength)',
+      emptyNote: 'No live episodes are linked to this keyword.',
+      badgeDegree: 'Degree',
+      badgeHof: '👑 Holds hall-of-fame link',
+      badgeTheme: 'axis: theme',
+      badgeNormal: 'Normal',
+      nodeHof: '👑 Hall of Fame',
+      edgePruned: 'pruned',
+      matches: ' matches',
+      bandTotal: 'total',
+      axisNote: 'No axis column in the keywords table, so this is unused for this run (all keywords are treated as normal/hall-of-fame).',
+      epHofTitle: 'Hall of fame (R>='
+    }
+  };
+  var LANG = (navigator.language || '').toLowerCase().indexOf('ja') === 0 ? 'ja' : 'en';
+  function t(key) {
+    return (I18N[LANG] && I18N[LANG][key] != null) ? I18N[LANG][key] : key;
+  }
+  var STATIC_TEXT_MAP = {
+    'title-text': 'title', 'stat-hof-label': 'statHof', 'legend-title': 'legendTitle',
+    'legend-hof-text': 'legendHof', 'legend-theme-text': 'legendTheme', 'legend-normal-text': 'legendNormal',
+    'hub-label-text': 'hubLabelToggle', 'footer-hint-text': 'footerHint',
+    'panel-hint-text': 'panelHintPrefix', 'panel-episodes-title': 'panelEpisodesTitle'
+  };
+
+  // ---- ヘッダ統計を埋める (言語非依存の部分) ----
   document.getElementById('db-file-note').textContent = META.dbFile + ' / ' + META.generatedAt.slice(0, 19).replace('T', ' ') + ' UTC';
   document.getElementById('stat-episodes').textContent = META.counts.episodes;
   document.getElementById('stat-keywords').textContent = META.counts.keywordsNodes;
   document.getElementById('stat-links').textContent = META.counts.linksLive;
-  var edgeLabel = META.counts.edgesRendered;
-  if (META.counts.edgesPruned > 0) {
-    edgeLabel += ' (間引き ' + META.counts.edgesPruned + '/' + META.counts.edgesTotal + ')';
-  }
-  document.getElementById('stat-edges').textContent = edgeLabel;
   document.getElementById('stat-hof').textContent = META.hallOfFameLinks;
 
   var bands = META.strengthBands;
@@ -481,13 +561,26 @@ html, body { background: var(--bg); color: var(--text); font: 13px/1.5 'Inter', 
   document.getElementById('band-recall').style.width = (bands.recall / bandTotal * 100) + '%';
   document.getElementById('band-deep').style.width = (bands.deep / bandTotal * 100) + '%';
   document.getElementById('band-dig').style.width = (bands.dig / bandTotal * 100) + '%';
-  document.getElementById('band-bar').title =
-    'recall(>=0.5)=' + bands.recall + ' / deep(0.2-0.5)=' + bands.deep + ' / dig(<0.2)=' + bands.dig + ' / 合計=' + bands.total;
 
-  if (!META.hasAxisColumn) {
-    var lp = document.getElementById('legend-purple');
-    lp.style.opacity = '0.35';
-    lp.title = 'keywordsテーブルにaxis列がないため今回は未使用（全キーワードが通常/殿堂入り扱い）';
+  function updateEdgeStat() {
+    var edgeLabel = META.counts.edgesRendered;
+    if (META.counts.edgesPruned > 0) {
+      edgeLabel += ' (' + t('edgePruned') + ' ' + META.counts.edgesPruned + '/' + META.counts.edgesTotal + ')';
+    }
+    document.getElementById('stat-edges').textContent = edgeLabel;
+  }
+
+  function updateBandTitle() {
+    document.getElementById('band-bar').title =
+      'recall(>=0.5)=' + bands.recall + ' / deep(0.2-0.5)=' + bands.deep + ' / dig(<0.2)=' + bands.dig + ' / ' + t('bandTotal') + '=' + bands.total;
+  }
+
+  function updateAxisNote() {
+    if (!META.hasAxisColumn) {
+      var lp = document.getElementById('legend-purple');
+      lp.style.opacity = '0.35';
+      lp.title = t('axisNote');
+    }
   }
 
   // ---- HTMLエスケープ ----
@@ -505,25 +598,28 @@ html, body { background: var(--bg); color: var(--text); font: 13px/1.5 'Inter', 
 
   function badgeHtml(node) {
     var out = '';
-    out += '<span class="badge">次数 ' + node.degree + '</span>';
-    if (node.hof) out += '<span class="badge gold">👑 殿堂入りリンク保持</span>';
-    if (node.axisTheme) out += '<span class="badge purple">axis: theme</span>';
-    if (!node.hof && !node.axisTheme) out += '<span class="badge blue">通常</span>';
+    out += '<span class="badge">' + t('badgeDegree') + ' ' + node.degree + '</span>';
+    if (node.hof) out += '<span class="badge gold">' + t('badgeHof') + '</span>';
+    if (node.axisTheme) out += '<span class="badge purple">' + t('badgeTheme') + '</span>';
+    if (!node.hof && !node.axisTheme) out += '<span class="badge blue">' + t('badgeNormal') + '</span>';
     return out;
   }
 
+  var currentPanelNode = null;
+
   function openPanel(node) {
+    currentPanelNode = node;
     panelTitle.textContent = node.label;
     panelBadges.innerHTML = badgeHtml(node);
     if (!node.episodes.length) {
-      panelEpisodes.innerHTML = '<div class="empty-note">このキーワードに紐づくliveなエピソードはありません。</div>';
+      panelEpisodes.innerHTML = '<div class="empty-note">' + escapeHtml(t('emptyNote')) + '</div>';
     } else {
       var html = '';
       node.episodes.forEach(function (ep) {
         html += '<div class="ep-row">';
         html += '<div class="ep-head">';
         html += '<span class="ep-strength">' + ep.strength.toFixed(3) + '</span>';
-        if (ep.hof) html += '<span class="ep-hof" title="殿堂入り (R>=' + META.nConsolidate + ')">👑</span>';
+        if (ep.hof) html += '<span class="ep-hof" title="' + escapeHtml(t('epHofTitle') + META.nConsolidate + ')') + '">👑</span>';
         html += '<span class="ep-r">R=' + ep.R + '</span>';
         html += '<span class="ep-date">' + escapeHtml(ep.date || '-') + '</span>';
         html += '</div>';
@@ -537,6 +633,7 @@ html, body { background: var(--bg); color: var(--text); font: 13px/1.5 'Inter', 
   }
 
   function closePanel() {
+    currentPanelNode = null;
     sidePanel.classList.remove('open');
   }
   document.getElementById('panel-close').addEventListener('click', closePanel);
@@ -569,7 +666,7 @@ html, body { background: var(--bg); color: var(--text); font: 13px/1.5 'Inter', 
     .backgroundColor('#05070a')
     .showNavInfo(false)
     .nodeLabel(function (n) {
-      return escapeHtml(n.label) + ' (次数' + n.degree + ')' + (n.hof ? ' 👑殿堂入り' : '');
+      return escapeHtml(n.label) + ' (' + t('badgeDegree') + ' ' + n.degree + ')' + (n.hof ? ' ' + t('nodeHof') : '');
     })
     .nodeColor(function (n) { return highlightSet.has(n.id) ? '#ffffff' : n.color; })
     .nodeVal(function (n) { return n.val; })
@@ -615,19 +712,23 @@ html, body { background: var(--bg); color: var(--text); font: 13px/1.5 'Inter', 
     );
   }
 
-  searchBox.addEventListener('input', function () {
+  function runSearch() {
     var q = searchBox.value.trim().toLowerCase();
     if (!q) {
       highlightSet = new Set();
       searchResult.textContent = '';
       Graph.refresh();
-      return;
+      return null;
     }
     var matches = NODES.filter(function (n) { return n.label.toLowerCase().indexOf(q) !== -1; });
     highlightSet = new Set(matches.map(function (n) { return n.id; }));
-    searchResult.textContent = matches.length + '件マッチ';
+    searchResult.textContent = matches.length + t('matches');
     Graph.refresh();
-    if (matches.length) {
+    return matches;
+  }
+  searchBox.addEventListener('input', function () {
+    var matches = runSearch();
+    if (matches && matches.length) {
       matches.sort(function (a, b) { return b.degree - a.degree; });
       focusNode(matches[0]);
     }
@@ -699,6 +800,38 @@ html, body { background: var(--bg); color: var(--text); font: 13px/1.5 'Inter', 
     requestAnimationFrame(updateHubLabels);
   }
   requestAnimationFrame(updateHubLabels);
+
+  // ---- 言語切り替え (JA/EN) ----
+  function applyStaticText() {
+    Object.keys(STATIC_TEXT_MAP).forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el) el.textContent = t(STATIC_TEXT_MAP[id]);
+    });
+    document.title = t('pageTitle');
+    document.documentElement.lang = LANG;
+    searchBox.placeholder = t('searchPlaceholder');
+    document.getElementById('panel-close').title = t('panelClose');
+  }
+
+  function setLang(lang) {
+    LANG = I18N[lang] ? lang : 'en';
+    document.getElementById('lang-btn-ja').classList.toggle('active', LANG === 'ja');
+    document.getElementById('lang-btn-en').classList.toggle('active', LANG === 'en');
+    applyStaticText();
+    updateEdgeStat();
+    updateBandTitle();
+    updateAxisNote();
+    runSearch();
+    if (currentPanelNode) openPanel(currentPanelNode);
+  }
+
+  document.getElementById('lang-btn-ja').addEventListener('click', function () { setLang('ja'); });
+  document.getElementById('lang-btn-en').addEventListener('click', function () { setLang('en'); });
+  setLang(LANG);
+
+  if (window.innerWidth < 700) {
+    document.getElementById('legend-wrap').classList.add('collapsed');
+  }
 })();
 </script>
 </body>
